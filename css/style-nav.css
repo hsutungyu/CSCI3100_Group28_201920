@@ -1,0 +1,114 @@
+
+.navbar {
+  overflow: auto;
+  position:absolute;
+  width:99vw;
+}
+.navbar li {
+  width: 20%;
+  float: left;
+  background-color: rgba(235, 97, 0, 0.6);
+}
+.navbar ul {
+  width: 100%;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+}
+.navbar-img {
+  display: block;
+}
+.navbar-img img {
+  margin-top: 30px;
+  margin-bottom: 39px;
+  vertical-align: middle;
+}
+.navbar-text {
+  display: block;
+  padding: 38px;
+  text-decoration: none;
+  color: #7e3204;
+  font-size: 20px;
+  font-family: monospace;
+  text-align: center;
+}
+.navbar-dropdown1-content {
+  display:none;
+  position:absolute;
+  left:0;
+  float:none;
+  z-index:1;
+  box-shadow: 0px 32px 16px 0px rgba(0,0,0,0.2);
+}
+.navbar-dropdown1-content li{
+  background-color: rgba(235, 97, 0, 0.1);
+}
+.navbar-dropdown1-content li a{
+  padding: 6px;
+  width: 14vw;
+  border-bottom:1px;
+  margin-left:8px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  font-size: 16px;
+  font-family: monospace;
+  text-decoration:none;
+  display:block;
+  text-align:left;
+  float:none;
+}
+.navbar-dropdown2-button {
+  display: block;
+  padding: 38px;
+  text-decoration: none;
+  color: #7e3204;
+  font-size: 20px;
+  font-family: monospace;
+  text-align: center;
+}
+.navbar a:hover,
+.navbar-dropdown2-button:hover {
+  background-color: #d9bf77;
+}
+.navbar-dropdown2-content {
+  background-color: transparent;
+  position:absolute;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+.navbar-dropdown2-content li {
+  background-color: rgba(235, 97, 0, 0.1);
+}
+.navbar-dropdown2-content form {
+  display: none;
+  z-index: 1;
+}
+.navbar-dropdown2-content input[type="text"] {
+  padding: 6px;
+  width: 14vw;
+  border: none;
+  margin-top: 8px;
+  margin-left: 16px;
+  margin-bottom: 8px;
+  font-size: 20px;
+  font-family: monospace;
+}
+.navbar-dropdown2-content button {
+  line-height: 1vw;
+  width: 4vw;
+  margin-top: 8px;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  font-size: 20px;
+  float: right;
+}
+.navbar ul li:hover .navbar-dropdown2-content form {
+  display: flex;
+  flex-direction: row;
+}
+.navbar ul li:hover .navbar-dropdown1-content{
+  display: block;
+}
