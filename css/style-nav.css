@@ -35,6 +35,14 @@
   font-family: monospace;
   text-align: center;
 }
+.navbar form a{
+  display: block;
+  text-decoration: none;
+  color: #7e3204;
+  font-size: 10px;
+  font-family: monospace;
+  text-align: center;
+}
 .navbar-dropdown1-content {
   display:none;
   position:absolute;
@@ -86,6 +94,16 @@
   z-index: 1;
 }
 .navbar-dropdown2-content input[type="text"] {
+  padding: 6px;
+  width: 14vw;
+  border: none;
+  margin-top: 8px;
+  margin-left: 16px;
+  margin-bottom: 8px;
+  font-size: 20px;
+  font-family: monospace;
+}
+.navbar-dropdown2-content input[type="password"] {
   padding: 6px;
   width: 14vw;
   border: none;
