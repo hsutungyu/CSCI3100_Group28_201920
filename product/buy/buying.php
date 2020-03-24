@@ -4,10 +4,11 @@
     <link rel="stylesheet" type="text/css" href="/css/style-nav.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Trade2CU - Buying</title>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 </head>
 
 <body>
-<?php
+    <?php
     session_start();
     ?>
     <div class="navbar">
@@ -33,36 +34,25 @@
                 </li>
             </ul>
         </li>
-        <li>
             <?php
             if(isset($_SESSION['username'])){
-            echo('<a class="navbar-text" href="/member/information.php">Welcome '.$_SESSION['username'].'</a>');
-            echo('<ul class="navbar-dropdown1-content"><li><a href="/member/logout.php" class="navbar-text">Logout</a></li></ul>');
-            }else{
-                echo('<form action="" method="post">
-                <a class="navbar-login-text" style="display: inline;
-                text-decoration: none;
-                color: #7e3204;
-                font-size: 10px;
-                font-family: monospace;
-                text-align: center;">Account:</a><br>
-                <input type="text" id="username" name="username"><br>
-                <a class="navbar-login-text" style="display: inline;
-                text-decoration: none;
-                color: #7e3204;
-                font-size: 10px;
-                font-family: monospace;
-                text-align: center;">Password:</a><br>
-                <input type="password" id="password" name="password"><br>
-                <input type="submit" name="login" value="Login" style="font-family:monospace;">
-                </form>');
+            echo('<li><a class="navbar-text" href="/member/information.php">Welcome '.$_SESSION['username'].'</a>');
+            ?>
+            <ul class="navbar-dropdown1-content"><li><a href="/member/logout.php" class="navbar-text">Logout</a></li></ul>
+            <?php
+            }
+            if(!isset($_SESSION['username'])){
+                ?>
+                <li><a class="navbar-text">Welcome Guest</a>
+                <ul class="navbar-login-content"><li><div class="form"><form action="" method="post"><a>Account:</a><input type="text" id="username" name="username"><a>Password:</a><input type="password" id="password" name="password"><input type="submit" name="login" value="Login"></form></div></li></ul></li>
+                <?php
             }
             define('DB_SERVER','localhost');
-    define('DB_USERNAME','root');
-    define('DB_PASSWORD','123456');
-    define('DB_NAME','project');
+            define('DB_USERNAME','root');
+            define('DB_PASSWORD','123456');
+            define('DB_NAME','project');
 
-    $link=mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_NAME);
+            $link=mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_NAME);
 
             if(isset($_POST['login'])){
                 $username=$_POST['username'];
@@ -81,10 +71,5 @@
     </ul>
 
 </div>
-
-</div>
-    <br><br><br><br><br><br><br><br>
-
-
 </body>
 </html>
