@@ -114,8 +114,8 @@ if(!isset($_SESSION['username'])){
 
 <footer class="footer">
     <h4 style="text-align:center">Trade2CU</h4>
-    <a style="text-align:center" href="/aboutus/aboutus.php">About Us</a><br>
-    <a style="text-align:center;margin-bottom:10px;" href="/aboutus/faq.php">FAQ</a><br>
+    <a href="/aboutus/aboutus.php">About Us</a><br>
+    <a href="/aboutus/faq.php">FAQ</a><br>
 </footer>
 <script src="/member/register.js"></script>
 </body>

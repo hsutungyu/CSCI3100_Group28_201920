@@ -6,10 +6,16 @@
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Trade2CU - Message</title>
+    <link href="https://fonts.googleapis.com/css?family=Baloo+2&display=swap" rel="stylesheet">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 </head>
 
 <body>
+<?php
+    session_start();
+    include_once('../member/register.php');
+    ?>
     <div class="navbar">
 
         <ul>
@@ -62,7 +68,12 @@ $(document).ready(function(){
  
 });
 </script>
-	
+<footer class="footer">
+    <h4 style="text-align:center">Trade2CU</h4>
+    <a style="text-align:center" href="/aboutus/aboutus.php">About Us</a><br>
+    <a style="text-align:center;margin-bottom:10px;" href="/aboutus/faq.php">FAQ</a><br>
+</footer>
+<script src="/member/register.js"></script>
 </body>
 
 

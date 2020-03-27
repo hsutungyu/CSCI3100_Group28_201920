@@ -1,39 +1,67 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
-
 <head>
-    <link rel="stylesheet" type="text/css" href="/css/style-nav.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Baloo+2&display=swap" rel="stylesheet">
-    <title>Trade2CU - Selling</title>
-    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-</head>
+<title>Trade2CU - FAQ</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+<!-- The font "Baloo 2" -->
+<link href="https://fonts.googleapis.com/css?family=Baloo+2:500&display=swap&subset=latin-ext" rel="stylesheet">
+
+<link rel="stylesheet" type="text/css" href="../css/style-nav.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <style>
-.content p1{
- padding: 30px;
- font-size: 200%;
- }
-.imagecss {
-  float: left;
-  width: 45%;
-  padding: 25px;
-  }
-.inputcss {
-  float: right;
-  width: 45%;
-  padding: 20px;
-  }
-.main{
-  width: 1200px;
-  }
+* {
+	font-family: "Baloo 2", cursive;
+}
+
+p {
+	text-align: justify;
+}
+
+#myInput {
+  background-image: url('https://www.w3schools.com/css/searchicon.png');
+  background-position: 10px 12px;
+  background-repeat: no-repeat;
+  width: 500px;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#myUL {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#myUL li a {
+  border: 1px solid #ddd;
+  margin-top: -1px;
+  background-color: #f6f6f6;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  color: black;
+  display: block;
+  width: 536px;
+}
+
+#myUL li a:hover:not(.header) {
+  background-color: #eee;
+}
 </style>
+</head>
 
 <body>
 <?php
     session_start();
     include_once('../member/register.php');
     ?>
-<div class="container">
+  <div class="container">
     <div class="navbar">
 
 <ul>
@@ -107,86 +135,54 @@
     </ul>
 
 </div>
-    <br><br><br><br><br><br><br><br>
-	<div class="main">
-	<div class="content">
-	<p1>Start selling your items!!!</p1>
-	<form action="/action_page.php">
-	  <div class="imagecss">
-           <label for="img">Please Upload Item's Image:<br></label>
-           <input type="file" id="img" name="img" accept="image/*" required onchange="loadFile(event)" /><br>
-		   <img id="output" width="400 height="400" />
-	  </div>
 
-	  <div class="inputcss">
-	      <label for="itemname">Name your item:</label><br>
-		  <input type="text" id="itemname" name="itemname" size="50" required><br>
-		  <p>Categories your Item:(You can choose more than one)</p>
-		  <input type="checkbox" id="b&s" name="cate" value="b&s">
-		  <label for="b&s">Textbook and Sources</label><br>
-		  <input type="checkbox" id="elect" name="cate" value="elect">
-		  <label for="elect">Electronics</label><br>
-		  <input type="checkbox" id="Furnitures" name="cate" value="Furnitures">
-		  <label for="Furnitures">Furnitures</label><br>
-		  <input type="checkbox" id="daily" name="cate" value="daily">
-		  <label for="daily">Dorm items/ Necessities</label><br>
-		  <input type="checkbox" id="cloth" name="cate" value="cloth">
-		  <label for="cloth">clothes</label><br>
-		  <input type="checkbox" id="stat" name="cate" value="stat">
-		  <label for="stat">Stationery</label><br>
-		  <input type="checkbox" id="other" name="cate" value="other">
-		  <label for="other">Others</label><br>
+<br><br><br><br><br>
 
-	      <p>Type:</p>
-	      <input type="radio" id="new" name="type" value="new" required>
-		  <label for="new">New</label><br>
-		  <input type="radio" id="2h" name="type" value="2h">
-		  <label for="2h">Second-hand</label><br>
-		  <br>
-		  <label for="Price">Set your Price:</label><br>
-		  <input type="number" id="price" name="price" min="0" required><br>
-		  <br>
-		  <label for="info">Additional infomation:(Optional)</label><br>
-		  <textarea rows="6" cols="50" name="info">Additional information...</textarea>
-		  <br><br>
+<h2>Hi! How can we help you?</h2>
 
-		  <input type="submit" value="Submit" onclick="ValidateSelection()">&emsp;&emsp;
-		  <input type="reset">
-	  </div>
-	</form>
-	</div>
-	</div>
-<script type="text/javascript">  
-function ValidateSelection()  
-{  
-    var checkboxes = document.getElementsByName("cate");  
-    var numberOfCheckedItems = 0;  
-    for(var i = 0; i < checkboxes.length; i++)  
-    {  
-        if(checkboxes[i].checked)  
-            numberOfCheckedItems++;  
-    }  
-    if(numberOfCheckedItems <1)  
-    {  
-        alert("Please select at least one category");  
-		event.preventDefault()
-        return false;  
-    }  
-}  
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Type your question here">
 
-var loadFile = function(event) {
-	var image = document.getElementById('output');
-	image.src = URL.createObjectURL(event.target.files[0]);
-};
+<p>Click on the question you want to ask below.</p>
+
+<ul id="myUL">
+	<li><a href="#q1">How to buy?</a></li>
+	<li><a href="#q2">How to sell?</a></li>
+	<li><a href="#q3">How to chat with the seller?</a></li>
+	<li><a href="#q4">Can I cancel the order?</a></li>
+	<li><a href="#q5">How can I get my item?</a></li>
+</ul>
+
+<script>
+function myFunction() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById('myInput');
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("myUL");
+  li = ul.getElementsByTagName('li');
+
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+  }
+}
 </script>
+
+<p>If you do not find your question here, please feel free to contact us!</p>
+
+<p>Email: <a href="mailto:csci3100project28@gmail.com">csci3100project28@gmail.com</a></p>
 </div>
 <footer class="footer">
-    <h4 style="text-align:center">Trade2CU</h4>
-    <a style="text-align:center" href="/aboutus/aboutus.php">About Us</a><br>
-    <a style="text-align:center;margin-bottom:10px;" href="/aboutus/faq.php">FAQ</a><br>
+  <h4 style="text-align:center">Trade2CU</h4>
+  <a style="text-align:center" href="/aboutus/aboutus.php">About Us</a><br>
+  <a style="text-align:center;margin-bottom:10px;" href="/aboutus/faq.php">FAQ</a><br>
 </footer>
 <script src="/member/register.js"></script>
 </body>
-
-
 </html>

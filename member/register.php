@@ -11,7 +11,8 @@
         <input class="register-input" type="password" id="register-password-confirm" name="register-password-confirm"><a>      </a><a class="register-err" id="passwordConfirmErr"></a><br>
         <a class="register-text">Your CUHK Email:</a><br>
         <input class="register-input" type="text" placeholder="s1155xxxxxx@link.cuhk.edu.hk or bxxxxx@cuhk.edu.hk" style="width:30vw;" id="register-email" name="register-email"><a>      </a><a class="register-err" id="emailErr"></a><br>
-        <input class="register-submit" id="register-submit" name="register-submit" type="submit" value="Register">
+        <input class="register-submit" id="register-submit" name="register-submit" type="submit" value="Register"><br>
+        <a></a>
     </form>
 </div>
 </div>
