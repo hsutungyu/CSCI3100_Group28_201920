@@ -36,6 +36,9 @@ $("#register-form").on("submit", function(event) {
       if (dataObj["emailErr"] != "") {
         $("#emailErr").html(dataObj["emailErr"]);
       }
+      if (dataObj["canSubmit"] == 1) {
+        window.location.reload();
+      }
     }
   });
 });

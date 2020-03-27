@@ -1,6 +1,10 @@
 <?php
 $emailErr=$passwordErr=$usernameErr=$passwordConfirmErr="";
 $canSubmit=1;
+session_start();
+function alert($msg){
+    echo "<script text='type/script'>alert('$msg');</script>";
+}
 if(!empty($_POST["register-account"])){
     $username=$_POST["register-account"];
 }else{
@@ -54,11 +58,30 @@ if(!empty($_POST["register-email"])){
             $passwordErr="Password must contain at least one uppercase and one lowercase letter!";
         }
     }
+    
+    $allowedEmailDomain=["link.cuhk.edu.hk","cuhk.edu.hk"];
+    if(filter_var($email,FILTER_VALIDATE_EMAIL)){
+        $separatedEmail=explode('@',$email);
+        $domainCheck=array_pop($separatedEmail);
+        if(!in_array($domainCheck,$allowedEmailDomain)){
+            $emailErr="Your email is not from CUHK!";
+            $canSubmit=0;
+        }
+        $query_email_duplicate=mysqli_query($link,"select * from member where email='$email'");
+        if(mysqli_num_rows($query_email_duplicate)!==0){
+            $emailErr="This email has been registered already!";
+            $canSubmit=0;
+        }
+    }else{
+        $emailErr="Invalid email format!";
+        $canSubmit=0;
+    }
 
     if ($canSubmit===1) {
         $password_hashed=password_hash($password, PASSWORD_DEFAULT);
-        $query_input_data=mysqli_query($link, "insert into member values (null,'$username','$password_hashed')");
+        $query_input_data=mysqli_query($link, "insert into member values (null,'$username','$password_hashed','$email')");
+        $_SESSION['username']=$username;
     }
-    $array=array('emailErr'=>$emailErr,'passwordErr'=>$passwordErr,'passwordConfirmErr'=>$passwordConfirmErr,'usernameErr'=>$usernameErr);
+    $array=array('canSubmit'=>$canSubmit,'emailErr'=>$emailErr,'passwordErr'=>$passwordErr,'passwordConfirmErr'=>$passwordConfirmErr,'usernameErr'=>$usernameErr);
     echo json_encode($array);
 ?>
