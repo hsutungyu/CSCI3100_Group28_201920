@@ -5,7 +5,7 @@
 <link rel="stylesheet" type="text/css" href="/css/style-info.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Baloo+2&display=swap" rel="stylesheet">
-    <title>Trade2CU - Homepage</title>
+    <title>Trade2CU - User Information</title>
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 </head>
 
@@ -106,18 +106,19 @@
         }else{
             $icon='/img/member/'.$row['icon'];
         }
-        echo "<div style='float:left;width:33.33%'><img src='".$icon."' height='50' width='50'></img></div>";
+        echo "<div style='float:left;width:33.33%'><img src='".$icon."' height='100' width='100'></img></div>";
         echo "<div style='float:left;width:33.33%'><a style='text-align:center' class='information-display'>Username: ".$row['username']."</a><br>";
         echo "<a style='text-align:center' class='information-display'>Email: ".$row['email']."</a><br>";
-        echo "<a style='text-align:center' class='information-display'>Telephone No.: ".$row['telephone']."</a><br></div>";
+        echo "<a style='text-align:center' class='information-display'>Telephone No.: ".$row['telephone']."</a><br><br><br><br></div>";
     }
 ?>
 <div style='float:left;width:33.33%'>
 <a id="icon-modal-button">Change Icon</a><br>
+<a href="/member/message.php">View Your Messages</a><br>
 <a id="modifyinfo-modal-button">Modify Your Information</a>
 </div>
 <br><br><br><br><br>
-<div style='float:left;width:50%;'><h2>Things you are Selling:</h2></div><div style='float:right;'><br><br><a href='#'>Post a new Item!</a></div>
+<div style='float:left;width:50%;'><h2>Things you are Selling:</h2></div><div style='float:right;'><br><br><a href='/product/selling.php'>Post a new Item!</a></div>
 </div>
 <div id="selling-display">
 <ul class="info-selling-display">
@@ -128,10 +129,14 @@ $row=mysqli_fetch_assoc($result);
 $id=$row["id"];
 $query="select * from product where mid=".$id;
 $result=mysqli_query($link,$query);
-while($row=mysqli_fetch_assoc($result)){
-    echo "<li><a><img width='100' height='100' src='../img/product/".$row["img"]."'>";
-    echo "<h4>".$row["name"]."</h4>";
-    echo "<p>HK$".$row["price"]."</p>";
+if (mysqli_num_rows($result)>0) {
+    while ($row=mysqli_fetch_assoc($result)) {
+        echo "<li><a><img width='100' height='100' src='../img/product/".$row["img"]."'>";
+        echo "<h4>".$row["name"]."</h4>";
+        echo "<p>HK$".$row["price"]."</p>";
+    }
+}else{
+    echo "<a>You don't have any products for sale now! Click the link above to post a new item on Trade2CU!";
 }
 ?>
 </ul>
