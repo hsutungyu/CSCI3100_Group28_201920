@@ -2,6 +2,7 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="/css/style-nav.css">
+<link rel="stylesheet" type="text/css" href="/css/style-info.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Baloo+2&display=swap" rel="stylesheet">
     <title>Trade2CU - Homepage</title>
@@ -12,6 +13,8 @@
 <?php
     session_start();
     include_once('../member/register.php');
+    include_once('../member/upload.php');
+    include_once('../member/modifyinfo.php');
     ?>
     <div class="container">
     <div class="navbar">
@@ -98,10 +101,40 @@
         ?>
         <h2 style='text-align:center'>User Information</h2>
         <?php
-        echo "<a style='text-align:center' class='information-display'>Username: ".$row['username']."</a><br>";
+        if($row['icon']==NULL){
+            $icon='/img/member/placeholder.png';
+        }else{
+            $icon='/img/member/'.$row['icon'];
+        }
+        echo "<div style='float:left;width:33.33%'><img src='".$icon."' height='50' width='50'></img></div>";
+        echo "<div style='float:left;width:33.33%'><a style='text-align:center' class='information-display'>Username: ".$row['username']."</a><br>";
         echo "<a style='text-align:center' class='information-display'>Email: ".$row['email']."</a><br>";
+        echo "<a style='text-align:center' class='information-display'>Telephone No.: ".$row['telephone']."</a><br></div>";
     }
 ?>
+<div style='float:left;width:33.33%'>
+<a id="icon-modal-button">Change Icon</a><br>
+<a id="modifyinfo-modal-button">Modify Your Information</a>
+</div>
+<br><br><br><br><br>
+<div style='float:left;width:50%;'><h2>Things you are Selling:</h2></div><div style='float:right;'><br><br><a href='#'>Post a new Item!</a></div>
+</div>
+<div id="selling-display">
+<ul class="info-selling-display">
+<?php
+$query="select id from member where username = '".$_SESSION["username"]."'";
+$result=mysqli_query($link,$query);
+$row=mysqli_fetch_assoc($result);
+$id=$row["id"];
+$query="select * from product where mid=".$id;
+$result=mysqli_query($link,$query);
+while($row=mysqli_fetch_assoc($result)){
+    echo "<li><a><img width='100' height='100' src='../img/product/".$row["img"]."'>";
+    echo "<h4>".$row["name"]."</h4>";
+    echo "<p>HK$".$row["price"]."</p>";
+}
+?>
+</ul>
 </div>
 <footer class="footer">
     <h4 style="text-align:center">Trade2CU</h4>
@@ -109,5 +142,7 @@
     <a style="text-align:center;margin-bottom:10px;" href="/aboutus/faq.php">FAQ</a><br>
 </footer>
 <script src="/member/register.js"></script>
+<script src="/member/upload.js"></script>
+<script src="/member/modifyinfo.js"></script>
 </body>
 </html>
