@@ -111,7 +111,7 @@
 	<div class="main">
 	<div class="content">
 	<p1>Start selling your items!!!</p1>
-	<form action="/action_page.php">
+	<form method="post" action="sellinginfo.php">
 	  <div class="imagecss">
            <label for="img">Please Upload Item's Image:<br></label>
            <input type="file" id="img" name="img" accept="image/*" required onchange="loadFile(event)" /><br>
@@ -122,29 +122,29 @@
 	      <label for="itemname">Name your item:</label><br>
 		  <input type="text" id="itemname" name="itemname" size="50" required><br>
 		  <p>Categories your Item:(You can choose more than one)</p>
-		  <input type="checkbox" id="b&s" name="cate" value="b&s">
+		  <input type="checkbox" id="b&s" name="cate[]" value="Textbook and Sources">
 		  <label for="b&s">Textbook and Sources</label><br>
-		  <input type="checkbox" id="elect" name="cate" value="elect">
+		  <input type="checkbox" id="elect" name="cate[]" value="Electronics">
 		  <label for="elect">Electronics</label><br>
-		  <input type="checkbox" id="Furnitures" name="cate" value="Furnitures">
+		  <input type="checkbox" id="Furnitures" name="cate[]" value="Furnitures">
 		  <label for="Furnitures">Furnitures</label><br>
-		  <input type="checkbox" id="daily" name="cate" value="daily">
+		  <input type="checkbox" id="daily" name="cate[]" value="Dorm items/ Necessities">
 		  <label for="daily">Dorm items/ Necessities</label><br>
-		  <input type="checkbox" id="cloth" name="cate" value="cloth">
+		  <input type="checkbox" id="cloth" name="cate[]" value="Clothes">
 		  <label for="cloth">clothes</label><br>
-		  <input type="checkbox" id="stat" name="cate" value="stat">
+		  <input type="checkbox" id="stat" name="cate[]" value="Stationery">
 		  <label for="stat">Stationery</label><br>
-		  <input type="checkbox" id="other" name="cate" value="other">
+		  <input type="checkbox" id="other" name="cate[]" value="Others">
 		  <label for="other">Others</label><br>
 
 	      <p>Type:</p>
-	      <input type="radio" id="new" name="type" value="new" required>
+	      <input type="radio" id="new" name="type[]" value="new" required>
 		  <label for="new">New</label><br>
-		  <input type="radio" id="2h" name="type" value="2h">
+		  <input type="radio" id="2h" name="type[]" value="second hand">
 		  <label for="2h">Second-hand</label><br>
 		  <br>
 		  <label for="Price">Set your Price:</label><br>
-		  <input type="number" id="price" name="price" min="0" required><br>
+		  <input type="number" step="0.1" id="price" name="price" min="0" required><br>
 		  <br>
 		  <label for="info">Additional infomation:(Optional)</label><br>
 		  <textarea rows="6" cols="50" name="info">Additional information...</textarea>
@@ -159,7 +159,7 @@
 <script type="text/javascript">  
 function ValidateSelection()  
 {  
-    var checkboxes = document.getElementsByName("cate");  
+    var checkboxes = document.getElementsByName("cate[]");  
     var numberOfCheckedItems = 0;  
     for(var i = 0; i < checkboxes.length; i++)  
     {  
