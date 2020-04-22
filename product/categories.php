@@ -21,8 +21,8 @@
   padding: 20px;
   }
 #frame{
-  width: 800px;
-  height: 500px;
+  width: 1000px;
+  height: 800px;
   border-style: none;
   }
 .link{
@@ -117,14 +117,13 @@
 	<div class="main">
 	<div id="cate">
 	  <ul>
-	    <li><p onclick="change('https://tetris.com/play-tetris')" id="item" class="link"><u>Textbooks and Sources</u></p></li><br>
-		<li><p onclick="change('https://tetris.com/play-tetris')" id="item" class="link"><u>Electronics</u></p></li><br>
-		<li><p onclick="change('https://tetris.com/play-tetris')" id="item" class="link"><u>Furnitures</u></p></li><br>
-		<li><p onclick="change('https://tetris.com/play-tetris')" id="item" class="link"><u>Dorm Items and Necesities</u></p></li><br>
-		<li><p onclick="change('https://tetris.com/play-tetris')" id="item" class="link"><u>Textbooks and Sources</u></p></li><br>
-		<li><p onclick="change('https://tetris.com/play-tetris')" id="item" class="link"><u>Clothes</u></p></li><br>
-		<li><p onclick="change('https://tetris.com/play-tetris')" id="item" class="link"><u>Stationery</u></p></li><br>
-		<li><p onclick="change('https://tetris.com/play-tetris')" id="item" class="link"><u>Others</u></p></li><br>
+	    <li><p onclick="change('http://localhost/product/Textbook%20and%20Sources.php')"id="item" class="link"><u>Textbooks and Sources</u></p></li><br>
+		<li><p onclick="change('http://localhost/product/Electronics.php')" id="item" class="link"><u>Electronics</u></p></li><br>
+		<li><p onclick="change('http://localhost/product/Furnitures.php')" id="item" class="link"><u>Furnitures</u></p></li><br>
+		<li><p onclick="change('http://localhost/product/Dorm.php')" id="item" class="link"><u>Dorm Items and Necesities</u></p></li><br>
+		<li><p onclick="change('http://localhost/product/Clothes.php')" id="item" class="link"><u>Clothes</u></p></li><br>
+		<li><p onclick="change('http://localhost/product/Stationery.php')" id="item" class="link"><u>Stationery</u></p></li><br>
+		<li><p onclick="change('http://localhost/product/Others.php')" id="item" class="link"><u>Others</u></p></li><br>
 	  </ul>
 	</div>
 	<div id="display">
