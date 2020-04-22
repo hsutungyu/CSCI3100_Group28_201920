@@ -79,7 +79,8 @@ if(!empty($_POST["register-email"])){
 
     if ($canSubmit===1) {
         $password_hashed=password_hash($password, PASSWORD_DEFAULT);
-        $query_input_data=mysqli_query($link, "insert into member values (null,'$username','$password_hashed','$email')");
+        $query_input_data=mysqli_query($link, "insert into member values (null,'$username','$password_hashed','$email',null,null,null,null)");
+        echo $link->error;
         $_SESSION['username']=$username;
     }
     $array=array('canSubmit'=>$canSubmit,'emailErr'=>$emailErr,'passwordErr'=>$passwordErr,'passwordConfirmErr'=>$passwordConfirmErr,'usernameErr'=>$usernameErr);
