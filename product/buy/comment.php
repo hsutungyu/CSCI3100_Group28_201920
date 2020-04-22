@@ -1,6 +1,7 @@
 <html>
 <body>
 <?php
+session_start();
 $servername="localhost";
 $username="root";
 $password="123456";
@@ -18,12 +19,11 @@ $rowl=mysqli_fetch_assoc($result);
 $id=$rowl["id"];
 $comment=$_POST['comment'];
 $time=date("Y/m/d H:i:s");
-session_start();
 $tid=$_SESSION['varname'];
 $sql ="INSERT INTO comment(pid,mid,comment,time) VALUES('$tid',$id,'$comment','$time')";
 $conn->query($sql);
 
-
+header("Location: ".$_POST["redir"]);
 
 ?>
 

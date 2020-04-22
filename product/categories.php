@@ -40,7 +40,7 @@
     include_once('../member/register.php');
     ?>
 <div class="container">
-    <div class="navbar">
+<div class="navbar">
 
 <ul>
         <li><a href="/product/buy/buying.php" class="navbar-text navbar-dropdown1-button">Buying</a>
@@ -56,8 +56,8 @@
         <li><a class="navbar-dropdown2-button">Search</a>
             <ul class="navbar-dropdown2-content">
                 <li>
-                    <form>
-                        <input type="text" placeholder="Search..">
+                    <form action="/search.php" method="get">
+                        <input name='text' type="text" placeholder="Search..">
                         <button type="submit"><i class="fa fa-search"></i></button>
                     </form>
                 </li>
@@ -127,7 +127,7 @@
 	  </ul>
 	</div>
 	<div id="display">
-	    <iframe id="frame" src='https://www.cuhk.edu.hk/english/index.html'> </iframe>
+	    <iframe id="frame"> </iframe>
 	</div>
 	</div>
 	

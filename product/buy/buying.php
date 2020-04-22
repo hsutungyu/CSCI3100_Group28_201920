@@ -76,7 +76,7 @@ font-size: 80%;
     include_once($_SERVER["DOCUMENT_ROOT"]."/member/register.php");
     ?>
 <div class="container">
-    <div class="navbar">
+<div class="navbar">
 
 <ul>
         <li><a href="/product/buy/buying.php" class="navbar-text navbar-dropdown1-button">Buying</a>
@@ -92,8 +92,8 @@ font-size: 80%;
         <li><a class="navbar-dropdown2-button">Search</a>
             <ul class="navbar-dropdown2-content">
                 <li>
-                    <form>
-                        <input type="text" placeholder="Search..">
+                    <form action="/search.php" method="get">
+                        <input name='text' type="text" placeholder="Search..">
                         <button type="submit"><i class="fa fa-search"></i></button>
                     </form>
                 </li>
@@ -163,6 +163,9 @@ if($conn->connect_error){
 ?>
 <div class="main">
 	<?php
+    if(empty($_GET['pid'])){
+        echo "<script>alert('Invalid Request!');window.location.href='/index.php';</script>";
+    }
 	$tid=$_GET['pid'];
     $qry=" SELECT * FROM product WHERE id=$tid ";
     $result=mysqli_query($conn,$qry);
@@ -170,10 +173,11 @@ if($conn->connect_error){
 	$name=$row['name'];
 	$price=$row['price'];
 	$type=$row['type'];
-	$info=$row['info'];
+    $info=$row['info'];
+    $img=$row['img'];
 	?>
 	<div class="productimg content">
-	     <img src="test.png" alt="test" id="test"/>
+         <?php echo "<img src='/img/product/".$img."' alt='test' id='test'/>";?>
 	</div>
 	<div class="productinfo content">
 	     <?php echo "<p id='name'>".$name."</p>"; ?>
@@ -215,7 +219,10 @@ if($conn->connect_error){
 	      <p>My favourite</p>
 		  <span id="heart"><i class="fa fa-heart-o" aria-hidden="true"></i></span>
 		  <p>Put in shopping cart</p>
-		  <img src="/img/cart.png" alt="cart" id="cart"/>
+          <form id="cart-form" action="cart.php" method="POST">
+		  <input type="image" id="cart" src="/img/cart.png" alt="cart">
+          <?php echo "<input name='cart-pid' id='cart-pid' type='text' style='display:none;' value='".$tid."'>"?>
+          </form>
 	</div>
 	</div>
 	<br><br><br>
@@ -223,9 +230,9 @@ if($conn->connect_error){
 	<hr>
 	    <p style="font-size: 150%" >Comment</p>
 	<form action="comment.php" method="POST">
+    <input type="text" id="redir" name="redir" style="display:none;">
 	<table>
 	<?php 
-	session_start();
 	$_SESSION['varname']=$tid;
 	?>
 	<tr><td colspan="10"><textarea name="comment" rows="10" cols="50"></textarea></td></tr>
@@ -242,7 +249,6 @@ $conn=new mysqli($servername, $username, $password, $dbname);
 if($conn->connect_error){
 	die("Connection failed:". $conn->connect_error);
 }
-get mid
 $query="select id, username from member where username='".$_SESSION["username"]."'";
 $result=mysqli_query($conn,$query);
 $rowl=mysqli_fetch_assoc($result);
@@ -287,7 +293,7 @@ $(document).ready(function(){
     <a style="text-align:center;margin-bottom:10px;" href="/aboutus/faq.php">FAQ</a><br>
 </footer>
 <script src="/member/register.js"></script>
-         	 
+<script src="buying.js"></script>
 		        		
 </body>
 </html>
