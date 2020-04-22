@@ -150,39 +150,120 @@ font-size: 80%;
 
 </div>
     <br><br><br><br><br><br><br><br>
-	<div class="main">
+<?php
+$servername="localhost";
+$username="root";
+$password="123456";
+$dbname="project";
+$conn=new mysqli($servername, $username, $password, $dbname);
+
+if($conn->connect_error){
+	die("Connection failed:". $conn->connect_error);
+}
+?>
+<div class="main">
+	<?php
+	$tid=$_GET['pid'];
+    $qry=" SELECT * FROM product WHERE id=$tid ";
+    $result=mysqli_query($conn,$qry);
+	$row=mysqli_fetch_assoc($result);
+	$name=$row['name'];
+	$price=$row['price'];
+	$type=$row['type'];
+	$info=$row['info'];
+	?>
 	<div class="productimg content">
 	     <img src="test.png" alt="test" id="test"/>
 	</div>
 	<div class="productinfo content">
-	     <p id="name">Product Name Here</p>
+	     <?php echo "<p id='name'>".$name."</p>"; ?>
 		 <p id="rating">Rating Here(With number of rating/comments received)</p>
 	     <hr>
-		 <p id="price">Price Here</p>
+		 <?php echo "<p id='price'>"."$".$price."</p>"; ?>
 		 <hr>
-		 <p>Type(box is default)</p>
+		 <p>Type</p>
+	     <?php
+		 if ($type==1){
+		 ?>
 		 <input type="radio" id="new" name="type" value="new" checked>
 		 <label for="new">New</label><br>
 		 <input type="radio" id="2h" name="type" value="2h" disabled>
 		 <label for="2h">Second-hand</label><br>
+		 <?php
+		 }
+		 else{
+		 ?>
+		 <input type="radio" id="new" name="type" value="new" disabled>
+		 <label for="new">New</label><br>
+		 <input type="radio" id="2h" name="type" value="2h" checked>
+		 <label for="2h">Second-hand</label><br>
+		 <?php
+		 }
+		 ?>
 		 <p>Additional information</p>
-		 <p>...</p>
+		 <?php 
+		 if ($info=='Additional information...'){
+			 echo "NONE";
+		 }
+		 else{
+		     echo "<p>".$info."</p>" ;
+		 }
+		 ?>
 	</div>
 
 	<div class="buy content">
 	      <p>My favourite</p>
 		  <span id="heart"><i class="fa fa-heart-o" aria-hidden="true"></i></span>
 		  <p>Put in shopping cart</p>
-		  <img src="cart.png" alt="cart" id="cart"/>
+		  <img src="/img/cart.png" alt="cart" id="cart"/>
 	</div>
 	</div>
 	<br><br><br>
-	<div id="comment">
+<div id="comment">
 	<hr>
 	    <p style="font-size: 150%" >Comment</p>
-		<p>comment show below</p>
-		<p>.</p>
-	</div>
+	<form action="comment.php" method="POST">
+	<table>
+	<?php 
+	session_start();
+	$_SESSION['varname']=$tid;
+	?>
+	<tr><td colspan="10"><textarea name="comment" rows="10" cols="50"></textarea></td></tr>
+	<tr><td colspan="2"><input type="submit" name="submit" value="Comment"></tr></td>
+	</table>
+	</form>
+<?php
+$servername="localhost";
+$username="root";
+$password="123456";
+$dbname="project";
+$conn=new mysqli($servername, $username, $password, $dbname);
+
+if($conn->connect_error){
+	die("Connection failed:". $conn->connect_error);
+}
+get mid
+$query="select id, username from member where username='".$_SESSION["username"]."'";
+$result=mysqli_query($conn,$query);
+$rowl=mysqli_fetch_assoc($result);
+$id=$rowl["id"];
+
+
+$sql=" SELECT * FROM comment WHERE pid=$tid";
+$sql=mysqli_query($conn,$sql);
+$numrows=mysqli_num_rows($sql);
+//show comments
+if ($numrows>0){
+	while ($r=mysqli_fetch_assoc($sql)){
+		$name=$rowl['username'];
+		$comment=$r['comment'];
+		$time=$r['time'];
+		echo $name.'<br/>'.'<br/>'.$comment.'<br/>'.'<br/>'.$time.'<br/>'.'<br/>'.'<hr size="1"/>';
+	}
+}
+		
+?>
+</div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
 </script>
 <script>
@@ -207,9 +288,6 @@ $(document).ready(function(){
 </footer>
 <script src="/member/register.js"></script>
          	 
-		        
-	
-			
-		
+		        		
 </body>
 </html>
