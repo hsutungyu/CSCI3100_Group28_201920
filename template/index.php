@@ -19,7 +19,7 @@
 	<ul>
 		<li><a class="img" href="../index.php"><img src="../img/logo.png" alt="Trade2CU logo"></img></a></li>
 		<li><a href="../product/selling.php">Sell</a></li>
-		<li><a href="#contact">Category</a></li>
+		<li><a href="#contact">Categories</a></li>
 		<li>
 			<form>
 				<input type="text" placeholder="Search.." name="search">
