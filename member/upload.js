@@ -1,12 +1,39 @@
-var modal = document.getElementById("icon-modal");
-var btn = document.getElementById("icon-modal-button");
+var modal1 = document.getElementById("icon-modal");
+var btn1 = document.getElementById("icon-modal-button");
+var span1 = document.getElementsByClassName("close1")[0];
+var imageErr = document.getElementById("imageErr");
 
-btn.onclick = function () {
-  modal.style.display = "block";
+btn1.onclick = function () {
+  modal1.style.display = "block";
 };
 
 window.onclick = function (event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
+  if (event.target == modal1) {
+    modal1.style.display = "none";
   }
 };
+
+span1.onclick = function () {
+  modal1.style.display = "none";
+};
+
+$("#icon-form").on("submit", function (event) {
+  event.preventDefault();
+  var formData = new FormData(this);
+  $.ajax({
+    url: "/member/uploadprocess.php",
+    type: "POST",
+    data: formData,
+    contentType: false,
+    processData: false,
+    success: function (data) {
+      var dataObj = JSON.parse(data);
+      if (dataObj["imageErr"] != "") {
+        $("#imageErr").html(dataObj["imageErr"]);
+      }
+      if (dataObj["canSubmit"] == 1) {
+        window.location.reload();
+      }
+    },
+  });
+});
