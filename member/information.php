@@ -109,13 +109,15 @@
         echo "<div style='float:left;width:33.33%'><img src='".$icon."' height='100' width='100'></img></div>";
         echo "<div style='float:left;width:33.33%'><a style='text-align:center' class='information-display'>Username: ".$row['username']."</a><br>";
         echo "<a style='text-align:center' class='information-display'>Email: ".$row['email']."</a><br>";
-        echo "<a style='text-align:center' class='information-display'>Telephone No.: ".$row['telephone']."</a><br><br><br><br></div>";
+        echo "<a style='text-align:center' class='information-display'>Telephone No.: ".$row['telephone']."</a><br>";
+        echo "<a style='text-align:center' class='information-display'>FPS payment method: ".$row["fps"]."<br><br><br></div>";
     }
 ?>
 <div style='float:left;width:33.33%'>
 <a id="icon-modal-button">Change Icon</a><br>
+<a id="modifyinfo-modal-button">Modify Your Information</a><br>
 <a href="/member/message.php">View Your Messages</a><br>
-<a id="modifyinfo-modal-button">Modify Your Information</a>
+<a href="/product/buy/status.php">View Status of Your Order / Your Items</a>
 </div>
 <br><br><br><br><br>
 <div style='float:left;width:50%;'><h2>Things you are Selling:</h2></div><div style='float:right;'><br><br><a href='/product/selling.php'>Post a new Item!</a></div>
