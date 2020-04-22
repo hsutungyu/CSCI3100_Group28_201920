@@ -13,7 +13,7 @@
     <?php
     session_start();
     include_once($_SERVER["DOCUMENT_ROOT"].'/member/register.php');
-    $status=array(1=>'Reserved','Confirming Payment','Payment Confirmed','Arranging Pick Up','Finished Trading');
+    $status=array(1=>'Reserved','Confirming Payment','Payment Confirmed','Arranging Pick Up','Pick Up Arrangment Finished','Transaction Finished');
     ?>
 <div class="container">
 <div class="navbar">
@@ -150,7 +150,16 @@ while($row=mysqli_fetch_assoc($result)){
         $result3=mysqli_query($link,$query);
         $row3=mysqli_fetch_assoc($result3);
         echo "<a>Bought by: ".$row3["username"]."</a><br>";
-        echo "<a>Status: ".$status[$row2["status"]]."</a>";
+        echo "<a>Status: ".$status[$row2["status"]];
+        if($row2["status"]==2){
+            echo "  <form action='statusprocess.php' method='POST'><input type='submit' name='confirm-payment-submit' value='Confirm payment of buyer for product with id ".$row["id"]."'>";
+            echo "<input type='text' name='confirm-payment-pid' style='display:none;' value='".$row["id"]."'>";
+            echo "</form></a><br>";
+        }elseif($row2["status"]==4){
+            echo "  <form action='statusprocess.php' method='POST'><input type='submit' name='pick-up-submit' value='Pick up coordinated for product with id ".$row["id"]."'>";
+            echo "<input type='text' name='pick-up-pid' style='display:none;' value='".$row["id"]."'>";
+            echo "</form></a><br>";
+        }
     }
 }
 ?>
