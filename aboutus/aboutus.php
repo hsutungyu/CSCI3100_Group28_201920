@@ -112,6 +112,11 @@ p {
 
 <p>Trade2CU acts like an exclusive shopping center for CUHK. Teachers and students can trade their items in CUHK during their school time, which can reduce the cost and the time consumed to buy an item. Any CUHK members can sell their items and buy items sold by other members on this website. No need to find people who can offer you necessities by yourself. You only need to search the item you want and the website will help you find the right person. Even if you have any special requirements, you can still find your ideal items through chatting with sellers on this website.</p>
 </div>
+
+<h2 style="text-align:center">Our Contact :)</h2>
+
+<p>If you want to tell us something, please send us email at <a href="mailto:csci3100project28@gmail.com">csci3100project28@gmail.com</a>!</p>
+
 <footer class="footer">
     <h4 style="text-align:center">Trade2CU</h4>
     <a style="text-align:center" href="/aboutus/aboutus.php">About Us</a><br>
