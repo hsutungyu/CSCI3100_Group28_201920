@@ -1,0 +1,70 @@
+* {
+    font-family: "Baloo 2", cursive;
+}
+
+html, body {
+	height: 100%;
+	margin: 5px 30px;
+	color: #663300;
+}
+
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.navbar li {
+    float: left;
+}
+
+.navbar li a {
+	padding: 16px
+}
+
+.navbar li a.img img {
+	height: 57px;
+}
+
+.navbar li a:not(.img) {
+    display: block;
+    color: #df5a07;
+    text-align: center;
+    text-decoration: none;
+}
+
+.navbar li a:hover:not(.img) {
+    color: #4a1e02;
+}
+
+.navbar input[type=text] {
+	margin: 15px 0;
+	margin-left: 15px
+}
+
+.wrapper {
+	min-height: 100%;
+	margin-bottom: -50px;
+}
+
+.push {
+  height: 50px;
+}
+
+.button {
+    background-color: #f3f6f8;
+    border: 1px solid #c7cbcd;
+    color: #663300;
+    padding: 5px 46px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px 2px;
+    border-radius: 4px;
+}
+
+.button:hover {
+	background-color: #e9edf2;
+}
