@@ -92,6 +92,7 @@
 <div style="float:left;width:20%;">
 <?php
 $storedpid=[];
+$storedmid=[];
 $query="select id from member where username='".$_SESSION["username"]."'";
 $result=mysqli_query($link,$query);
 $row=mysqli_fetch_assoc($result);
@@ -101,11 +102,28 @@ $result=mysqli_query($link,$query);
     while($row=mysqli_fetch_assoc($result)){
         array_push($storedpid,$row['pid']);
     }
+$query="select distinct pid, sendid, receiveid from message where sendid=".$id." or receiveid=".$id." order by pid";
+$result=mysqli_query($link,$query);
+
+    while($row=mysqli_fetch_assoc($result)){
+        foreach($storedpid as &$pid){
+        if($row["sendid"]!=$id&&!array_key_exists($pid,$storedmid)){
+            $storedmid[$pid]=$row["sendid"];
+        }elseif($row["receiveid"]!=$id&&!array_key_exists($pid,$storedmid)){
+            $storedmid[$pid]=$row["receiveid"];
+        }
+    }
+}
+unset($pid);
 foreach ($storedpid as &$pid){
     $query="select name from product where id=".$pid;
     $result=mysqli_query($link,$query);
     $row=mysqli_fetch_assoc($result);
-    echo "<p class='messagebox-button'>".$pid.": ".$row["name"]."</p>";
+    echo "<a class='messagebox-button'>".$pid." : ".$row["name"]."<br>";
+    $query="select username from member where id=".$storedmid[$pid];
+    $result=mysqli_query($link,$query);
+    $row=mysqli_fetch_assoc($result);
+    echo " with ".$row["username"]."</a><br>";
 }
 ?>
 </div>
@@ -131,10 +149,12 @@ unset($pid);
 
 </div>
 <form id="message-form" action="" method="post">
-<input id="message-submit" style="display:none;float:right;height:4.5vh;" type="submit">
-<input id="message-input" style="display:none;float:right;width:80%;height:4vh;" type="text">
+<input name="message-submit" id="message-submit" style="display:none;float:right;height:4.5vh;" type="submit">
+<input name="message-input" id="message-input" style="display:none;float:right;width:80%;height:4vh;" type="text">
+<input name="message-receive" style="display:none;" id="message-receive" type="text">
+<input name="message-pid" style="display:none;" id="message-pid" type="text">
 </form>
-
+<br><br><br>
 
 </div>
 
