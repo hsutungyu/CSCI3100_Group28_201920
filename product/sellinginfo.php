@@ -2,6 +2,7 @@
 <body>
 
 <?php
+session_start();
 $servername="localhost";
 $username="root";
 $password="123456";
@@ -14,7 +15,7 @@ if($conn->connect_error){
 $itemname=$_POST["itemname"];
 echo "Itemname: ",$itemname,"<br>";
 $cate=$_POST["cate"];
-echo "Categores: ",implode(", ",$cate),"<br>";
+echo "Categories: ",implode(", ",$cate),"<br>";
 $type=$_POST["type"];
 echo "Type: ",implode($type),"<br>";
 $price=$_POST["price"];
@@ -76,18 +77,27 @@ $result=mysqli_query($conn,$query);
 $row=mysqli_fetch_assoc($result);
 $id=$row['id'];
 //need add mid
-$sql ="INSERT INTO product(name,type,price,info,mid) VALUES('$itemname',$type,$price,'$info',$id)";
+$target_dir="../img/product/";
+$target_file=$target_dir.basename($_FILES["fileToUpload"]["name"]);
+$imageFileType=strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+$randomName=uniqid();
+$target_file=$target_dir.$randomName.'.'.$imageFileType;
+move_uploaded_file($_FILES["fileToUpload"]["tmp_name"],$target_file);
+$sql ="INSERT INTO product(name,type,price,info,mid,img) VALUES('$itemname',$type,$price,'$info',$id,'$randomName')";
 $conn->query($sql);
+$pid=$conn->insert_id;
+
+
+
 //get pid and insert category
 $len=count($cate);
-$pid=$conn->insert_id;
 for ($i=0; $i<$len; $i++){
 	$num=array_pop($cate);
 	$sqll ="INSERT INTO categories(category,pid) VALUES($num,$pid)";
 	$conn->query($sqll);
 }
 
-
+header("Location: /product/buy/status.php");
 ?>	
 </body>
 </html>

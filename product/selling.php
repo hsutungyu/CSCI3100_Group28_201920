@@ -30,16 +30,16 @@
 
 <body>
 <?php
+session_start();
 if(!isset($_SESSION['username'])){
     echo "<script>alert('Please login before accessing this page!');window.location.href='/index.php';</script>";
 }
 ?>
 <?php
-    session_start();
     include_once('../member/register.php');
     ?>
 <div class="container">
-    <div class="navbar">
+<div class="navbar">
 
 <ul>
         <li><a href="/product/buy/buying.php" class="navbar-text navbar-dropdown1-button">Buying</a>
@@ -55,8 +55,8 @@ if(!isset($_SESSION['username'])){
         <li><a class="navbar-dropdown2-button">Search</a>
             <ul class="navbar-dropdown2-content">
                 <li>
-                    <form>
-                        <input type="text" placeholder="Search..">
+                    <form action="/search.php" method="get">
+                        <input name='text' type="text" placeholder="Search..">
                         <button type="submit"><i class="fa fa-search"></i></button>
                     </form>
                 </li>
@@ -115,11 +115,11 @@ if(!isset($_SESSION['username'])){
     <br><br><br><br><br><br><br><br>
 	<div class="main">
 	<div class="content">
-	<p1>Start selling your items!!!</p1>
-	<form method="post" action="sellinginfo.php">
+	<h2>Start selling your items!</h2>
+	<form method="post" action="sellinginfo.php" enctype="multipart/form-data">
 	  <div class="imagecss">
            <label for="img">Please Upload Item's Image:<br></label>
-           <input type="file" id="img" name="img" accept="image/*" required onchange="loadFile(event)" /><br>
+           <input type="file" id="fileToUpload" name="fileToUpload" accept="image/*" required onchange="loadFile(event)" /><br>
 		   <img id="output" width="400 height="400" />
 	  </div>
 
