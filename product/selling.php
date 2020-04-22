@@ -30,6 +30,11 @@
 
 <body>
 <?php
+if(!isset($_SESSION['username'])){
+    echo "<script>alert('Please login before accessing this page!');window.location.href='/index.php';</script>";
+}
+?>
+<?php
     session_start();
     include_once('../member/register.php');
     ?>

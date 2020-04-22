@@ -60,7 +60,7 @@ for ($i=0; $i<count($cate); $i++){
         case "Others":
 		     $tmp=7;
 			 $cate=array_reverse($cate);
-			 array_push($catenum,$tmp);
+			 array_push($cate,$tmp);
 	};	
 };	
 $tmp=array_pop($type);
@@ -72,10 +72,11 @@ else{
 	$type=2;
 }
 $query="select id from member where username='".$_SESSION['username']."'";
-$result=mysqli_query($link.$query);
+$result=mysqli_query($conn,$query);
 $row=mysqli_fetch_assoc($result);
 $id=$row['id'];
-$sql ="INSERT INTO product(name,type,price,info) VALUES('$itemname',$type,$price,'$info')";
+//need add mid
+$sql ="INSERT INTO product(name,type,price,info,mid) VALUES('$itemname',$type,$price,'$info',$id)";
 $conn->query($sql);
 //get pid and insert category
 $len=count($cate);
