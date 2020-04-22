@@ -12,10 +12,11 @@
 <body>
     <?php
     session_start();
-    include_once($_SERVER["DOCUMENT_ROOT"]."/member/register.php");
+    include_once($_SERVER["DOCUMENT_ROOT"].'/member/register.php');
+    $status=array(1=>'Reserved','Confirming Payment','Payment Confirmed','Arranging Pick Up','Finished Trading');
     ?>
 <div class="container">
-    <div class="navbar">
+<div class="navbar">
 
 <ul>
         <li><a href="/product/buy/buying.php" class="navbar-text navbar-dropdown1-button">Buying</a>
@@ -31,7 +32,7 @@
         <li><a class="navbar-dropdown2-button">Search</a>
             <ul class="navbar-dropdown2-content">
                 <li>
-                    <form action="search.php" method="get">
+                    <form action="/search.php" method="get">
                         <input name='text' type="text" placeholder="Search..">
                         <button type="submit"><i class="fa fa-search"></i></button>
                     </form>
@@ -90,60 +91,72 @@
 </div>
 
 <br><br><br><br><br><br><br><br>
-<h2>Your shopping cart</h2>
+
+<h2>Transaction</h2>
+<h3>Your Order</h3>
 <ul>
 <?php
-if(!empty($_POST["cart-pid"])){
-    $query="select id from member where username='".$_SESSION["username"]."'";
-    $result=mysqli_query($link,$query);
-    $row=mysqli_fetch_assoc($result);
-    $id=$row["id"];
-    $query="select mid from product where id=".$_POST["cart-pid"];
-    $result=mysqli_query($link,$query);
-    $row=mysqli_fetch_assoc($result);
-    $id1=$row["mid"];
-    if($id==$id1){
-        alert("You cannot buy your own product!");
-        echo "<script>window.location='/index.php'</script>";
+defined('DB_SERVER') or define('DB_SERVER', 'localhost');
+defined('DB_USERNAME') or define('DB_USERNAME', 'root');
+defined('DB_PASSWORD') or define('DB_PASSWORD', '123456');
+defined('DB_NAME') or define('DB_NAME', 'project');
+
+$link=mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+
+$query="select id from member where username='".$_SESSION["username"]."'";
+$result=mysqli_query($link,$query);
+$row=mysqli_fetch_assoc($result);
+$id=$row["id"];
+$query="select trans.status, product.mid, product.name, product.price, trans.id from trans inner join product on trans.pid=product.id where trans.buyid=".$id;
+$result=mysqli_query($link,$query);
+while($row=mysqli_fetch_assoc($result)){
+    echo "<li><a>Product Name: ".$row["name"]."</a><br>";
+    echo "<a>Price: HK$".$row["price"]."</a><br>";
+    $query="select username from member where id=".$row["mid"];
+    $result1=mysqli_query($link,$query);
+    $row1=mysqli_fetch_assoc($result1);
+    $buyusername=$row1["username"];
+    echo "<a>Sold by: ".$buyusername.". Message him/her <a href='/member/message.php'>here</a><br>";
+    echo "<a>Status: ".$status[$row["status"]];
+    if($row["status"]==1){
+        echo "   <a href='/product/buy/transaction.php?tid=".$row["id"]."'>Start Payment</a></a><br>";
     }else{
-        if(!isset($_SESSION["shopping-cart"])){
-            $_SESSION["shopping-cart"]=[];
-            array_push($_SESSION["shopping-cart"],$_POST["cart-pid"]);
-        }else{
-            if(!in_array($_POST["cart-pid"],$_SESSION["shopping-cart"])){
-                array_push($_SESSION["shopping-cart"],$_POST["cart-pid"]);
-            }
-        }
+        echo "</a>";
     }
-}
-if(!empty($_SESSION["shopping-cart"])){
-    foreach($_SESSION["shopping-cart"] as &$pid){
-        $query="select * from product where id=".$pid;
-        $result=mysqli_query($link,$query);
-        $row=mysqli_fetch_assoc($result);
-        echo "<li style='display:inline-block;width:25%;'><a><img width='100' height='100' src='/img/product/".$row["img"]."'>";
-        echo "<h4>".$row["name"]."</h4>";
-        echo "<p>HK$".$row["price"]."</p>";
-    }
-    ?>
-    </ul>
-    <?php
-}else{
-    echo "<a>Your shopping cart is empty!</a>";
-}
-if (!empty($_SESSION["shopping-cart"])) {
-    ?>
-    <form id="checkout-form" method="POST" action="cartprocess.php">
-    <input type="submit" id="checkout-submit" value="Proceed to Checkout">
-    </form>
-    <form action="clearcart.php" method="POST">
-    <input type="submit" value="Clear Shopping Cart">
-    </form>
-<?php
+    
+    echo "</li>";
 }
 ?>
-<br><br>
+</ul>
+<h3>Your Item(s) for Sale</h3>
+<ul>
+<?php
+$query="select * from product where product.mid=".$id;
+$result=mysqli_query($link,$query);
+while($row=mysqli_fetch_assoc($result)){
+    echo "<li><a>Product Name: ".$row["name"]."</a><br>";
+    echo "<a>Price: HK$".$row["price"]."</a><br>";
+    $query="select trans.id from trans inner join product on trans.pid=product.id where product.mid=".$id;
+    $result1=mysqli_query($link,$query);
+    $row1=mysqli_fetch_assoc($result1);
+    if(mysqli_num_rows($result1)==0){
+        echo "<a>Status: Not purchased yet</a></li>";
+    }else{
+        $tid=$row1["id"];
+        $query="select status, buyid from trans where id=".$tid;
+        $result2=mysqli_query($link,$query);
+        $row2=mysqli_fetch_assoc($result2);
+        $query="select username from member where id=".$row2["buyid"];
+        $result3=mysqli_query($link,$query);
+        $row3=mysqli_fetch_assoc($result3);
+        echo "<a>Bought by: ".$row3["username"]."</a><br>";
+        echo "<a>Status: ".$status[$row2["status"]]."</a>";
+    }
+}
+?>
+</ul>
 </div>
+
 <footer class="footer">
     <h4 style="text-align:center">Trade2CU</h4>
     <a href="/aboutus/aboutus.php">About Us</a><br>
