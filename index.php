@@ -88,6 +88,7 @@
     </ul>
 
 </div>
+
 <br><br><br><br><br><br><br><br>
 <h2>News Feed</h2>
 <?php
@@ -101,16 +102,37 @@ if(!isset($_SESSION['username'])){
 }else{
     ?>
     <ul class="news-feed-login">
-    <li><a>abc commented on your product xyz.</a></li>
-    <li><a>your product xyz has been bought. See details.</li>
+<?php
+    $query="select lastlogin, id from member where username='".$_SESSION["username"]."'";
+    $result=mysqli_query($link,$query);
+    $row=mysqli_fetch_assoc($result);
+    $lastlogin=$row["lastlogin"];
+    $id=$row["id"];
+    $query="select * from message where receiveid=".$id." and time>'".$lastlogin."'";
+    $result=mysqli_query($link,$query);
+    $count=$result->num_rows;
+    if($count==0){
+        echo "<li><a>You have no new messages.</a></li>";
+    }else{
+        echo "<li><a>You have ".$count." new message(s). Click </a><a href='/member/message.php'>here</a> to view them.</a></li>";
+    }
+?>
+    <li><a>Commented</a></li>
+    <li><a>Transaction</a></li>
     </ul>
     <?php
+}
+?>
+<?php
+if(isset($_SESSION["username"])){
+    $query="update member set lastlogin=now() where username='".$_SESSION["username"]."'";
+    $result=mysqli_query($link,$query);
 }
 ?>
 <br><br><br>
 <h2>Product Suggestion</h2>
 <p>Season of spring! Your dorm may need a dehumidifier. Here are some products that we think you may need:</p>
-        </div>
+</div>
 
 <footer class="footer">
     <h4 style="text-align:center">Trade2CU</h4>
