@@ -14,7 +14,7 @@
     session_start();
     include_once($_SERVER["DOCUMENT_ROOT"]."/member/register.php");
     ?>
-<div class="container">
+<div class="wrapper">
 <div class="navbar">
 
 <ul>
