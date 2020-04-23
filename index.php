@@ -195,10 +195,12 @@ $sql=" SELECT keywords, description FROM suggestion WHERE description='$preset' 
 $result=mysqli_query($conn,$sql);
 $text=mysqli_fetch_assoc($result);
 //store keyword into array
-$text=explode(" ",$text['keywords']);
-$len=count($text);
+if(mysqli_num_rows($result)!=0){
+    $text=explode(" ",$text['keywords']);
+    $len=count($text);
+}
 //searching product that matches at least one keyword
-if (count($text)>0){
+if (mysqli_num_rows($result)!=0&&count($text)>0){
 	$query=" SELECT * FROM product ";
 	$query=mysqli_query($conn,$query);
 	$numrows=mysqli_num_rows($query);

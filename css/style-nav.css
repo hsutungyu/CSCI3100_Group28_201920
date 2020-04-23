@@ -114,3 +114,6 @@ html, body {
   font-size:28px;
   font-weight:bold;
 }
+.no-visited-link-color:visited{
+  color:#df5a07;
+}

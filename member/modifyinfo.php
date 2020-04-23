@@ -12,7 +12,7 @@ $row=mysqli_fetch_assoc($result);
 <div class="modal-content">
 <span class="close2">&times;</span><br>
 <form class="modifyinfo-form" id="modifyinfo-form" action="" method="post">
-        <h1>Modify Your Information<br><span style="font-size:20px;">(Leave Blank if Necessary)<span></h1><br>
+<h1>Modify Your Information<br><span style="font-size:20px;">(Leave Blank if Necessary)<span></h1><br>
         <a class="modifyinfo-text">Password:<br><span style="font-size:15px;">(8 characters or more, with at least one uppercase letter and one lowercase letter)<span></a><br>
         <input class="modifyinfo-input" type="password" id="modifyinfo-password" name="modifyinfo-password"><a>      </a><a class="modifyinfo-err" id="passwordErr1"></a><br>
         <a class="modifyinfo-text">Confirm Password: </a><br>

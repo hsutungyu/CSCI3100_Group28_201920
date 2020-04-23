@@ -13,12 +13,14 @@ if($conn->connect_error){
 $pid=$_POST["pid"];
 $rate=$_POST["rate"];
 $buyusername=$_POST["buyusername"];
-$query="select username from member where id=".$row["mid"];
-$result1=mysqli_query($link,$query);
-$row1=mysqli_fetch_assoc($result1);
-$sql ="INSERT INTO rating(mid,rate,pid) VALUES($buyusername,$rate,$pid)";
+$query="select id from member where username='".$buyusername."'";
+$result=mysqli_query($conn,$query);
+$row=mysqli_fetch_assoc($result);
+$id=$row["id"];
+$sql ="INSERT INTO rating(mid,rate,pid) VALUES($id,$rate,$pid)";
 $conn->query($sql);
 header("Location: status.php");
 ?>
+
 </body>
 </html>

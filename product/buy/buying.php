@@ -187,6 +187,7 @@ if($conn->connect_error){
 	$type=$row['type'];
     $info=$row['info'];
     $img=$row['img'];
+    $mid=$row['mid'];
 	?>
 	<div class="productimg content">
          <?php echo "<img src='/img/product/".$img."' alt='test' id='test'/>";?>
@@ -204,8 +205,13 @@ if($conn->connect_error){
 				 $sum=$sum+$row2['rate'];
 				 $count++;
 			 }
-		 }
-		 $average=$sum/$count;
+         }
+         if($count!=0){
+            $average=$sum/$count;
+         }else{
+             $average=0;
+         }
+		 
 		 $approx=round($average);
 		 if ($approx==5){
 	         ?>

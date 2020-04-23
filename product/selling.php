@@ -123,7 +123,7 @@ if(!isset($_SESSION['username'])){
 	  <div class="imagecss">
            <label for="img">Please Upload Item's Image:<br></label>
            <input type="file" id="fileToUpload" name="fileToUpload" accept="image/*" required onchange="loadFile(event)" /><br>
-		   <img id="output" width="400" />
+		   <img id="output" width="400 height="400" />
 	  </div>
 
 	  <div class="inputcss">
@@ -159,7 +159,7 @@ if(!isset($_SESSION['username'])){
 		  <br><br>
 
 		  <input type="submit" value="Submit" onclick="ValidateSelection()">&emsp;&emsp;
-		  <input type="reset" value="Reset">
+		  <input type="reset">
 	  </div>
 	</form>
 	</div>
