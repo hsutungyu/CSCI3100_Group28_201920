@@ -136,13 +136,34 @@ if(!isset($_SESSION['username'])){
     $result=mysqli_query($link,$query);
     $count=$result->num_rows;
     if($count==0){
-        echo "<li><a>You have no new messages.</a></li>";
+        echo "<li><a>You don't have new messages.</a></li>";
     }else{
         echo "<li><a>You have ".$count." new message(s). Click </a><a href='/member/message.php'>here</a> to view them.</a></li>";
     }
-?>
-    <li><a>Commented</a></li>
-    <li><a>Transaction</a></li>
+
+    $query="select pid, count(*) from comment inner join product on comment.pid=product.id inner join member on product.mid=member.id where member.id=".$id." and time>'".$lastlogin."' group by pid";
+    $result=mysqli_query($link,$query);
+    $count=mysqli_num_rows($result);
+    if($count==0){
+        echo"<li><a>You don't have new comments.</a></li>";
+    }else{
+        while($row=mysqli_fetch_assoc($result)){
+            $query="select name from product where id=".$row["pid"];
+            $result1=mysqli_query($link,$query);
+            $row1=mysqli_fetch_assoc($result1);
+            echo "<li><a>You have ".$row["count(*)"]." new comment(s) for the product ".$row1["name"].". Click <a href='/product/buy/buying.php?pid=".$row["pid"]."'>here</a> to view them.</a?</li>";
+        }
+    }
+    
+    $query="select distinct trans.pid from trans inner join product on trans.pid=product.id inner join member on product.mid=member.id where (trans.buyid=".$id." or product.mid=".$id.") and trans.lastupdate>'".$lastlogin."' and trans.lastupdate is not null ";
+    $result=mysqli_query($link,$query);
+    $count=mysqli_num_rows($result);
+    if($count==0){
+        echo "<li><a>Your transactions don't have any updates.</a></li>";
+    }else{
+        echo "<li><a>You have ".$count." new updates on your transactions. Click </a><a href='/product/buy/status.php'>here</a> to view them.</a></li>";
+    }
+    ?>
     </ul>
     <?php
 }
