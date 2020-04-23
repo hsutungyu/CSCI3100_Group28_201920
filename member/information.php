@@ -16,41 +16,38 @@
     include_once('../member/upload.php');
     include_once('../member/modifyinfo.php');
     ?>
-    <div class="container">
+    <div class="wrapper">
     <div class="navbar">
 
 <ul>
-        <li><a href="/product/buy/buying.php" class="navbar-text navbar-dropdown1-button">Buying</a>
-            <ul class="navbar-dropdown1-content">
-                <li><a href="/product/buy/buying.php">Search for Products</a>
-                    <a href="/product/categories.php">View Categories</a>
-                </li>
-            </ul>
-        </li>
-        <li><a href="/product/selling.php" class="navbar-text">Selling</a></li>
-        <li><a href="/index.php" class="navbar-img active"><img src="/img/logo.png" height="60px" align="middle"></a>
-        </li>
-        <li><a class="navbar-dropdown2-button">Search</a>
-            <ul class="navbar-dropdown2-content">
-                <li>
-                    <form>
-                        <input type="text" placeholder="Search..">
-                        <button type="submit"><i class="fa fa-search"></i></button>
-                    </form>
-                </li>
-            </ul>
-        </li>
+		<li><a class="img" href="../index.php"><img src="../img/logo.png" alt="Trade2CU logo"></img></a></li>
+		<li><a href="../product/selling.php">Sell</a></li>
+		<li><a href="../product/categories.php">Categories</a></li>
+        <li>
+			<form>
+				<input type="text" placeholder="Search.." name="search">
+				<button type="submit"><i class="fa fa-search"></i></button>
+			</form>
+		</li>
             <?php
             if (isset($_SESSION['username'])) {
-                echo('<li><a class="navbar-text" href="/member/information.php">Welcome '.$_SESSION['username'].'</a>'); ?>
-            <ul class="navbar-dropdown1-content"><li><a href="/member/logout.php" class="navbar-text">Logout</a></li></ul>
-            <?php
-            }
+                echo('<li style="float:right"><a href="../member/logout.php">Logout</a></li>');
+				echo('<li style="float:right"><a class="navbar-text" href="../member/information.php">Welcome '.$_SESSION['username'].'!</a></li>'); 
+			}
             if (!isset($_SESSION['username'])) {
                 ?>
-                <li><a class="navbar-text">Welcome Guest</a>
-                <ul class="navbar-login-content"><li><div class="form"><form action="" method="post"><a>Account:</a><input type="text" id="username" name="username"><a>Password:</a><input type="password" id="password" name="password"><input type="submit" name="login" value="Login"></form></div></li></ul>
-                <ul class="navbar-dropdown1-content"><li><a id="register-modal-button">Register</a></li></ul></li>
+				<li style="float:right">
+					<a id="register-modal-button">Register</a>
+				</li>
+                <li style="float:right">
+					<form action="" method="post">
+						<label for="username" style="color:#df5a07;position:relative;right:4px;">Username:</label>
+						<input type="text" id="username" name="username" style="margin-left:-4.5px;">
+						<label for="password" style="color:#df5a07;">Password:</label>
+						<input type="password" id="password" name="password">
+						<input type="submit" name="login" value="Login">
+					</form>
+				</li>
                 <?php
             }
             defined('DB_SERVER') or define('DB_SERVER', 'localhost');
@@ -90,7 +87,7 @@
     </ul>
 
 </div>
-<br><br><br><br><br><br><br><br>
+<br><br>
 <?php
     if(!isset($_SESSION['username'])){
         echo "<script>alert('Please login before accessing this page!');window.location.href='/index.php';</script>";
@@ -98,30 +95,28 @@
         $query="SELECT * FROM member where username='".$_SESSION['username']."'";
         $result=mysqli_query($link,$query);
         $row=mysqli_fetch_assoc($result);
-        ?>
-        <h2 style='text-align:center'>User Information</h2>
-        <?php
         if($row['icon']==NULL){
             $icon='/img/member/placeholder.png';
         }else{
             $icon='/img/member/'.$row['icon'];
         }
-        echo "<div style='float:left;width:33.33%'><img src='".$icon."' height='100' width='100'></img></div>";
-        echo "<div style='float:left;width:33.33%'><a style='text-align:center' class='information-display'>Username: ".$row['username']."</a><br>";
-        echo "<a style='text-align:center' class='information-display'>Email: ".$row['email']."</a><br>";
-        echo "<a style='text-align:center' class='information-display'>Telephone No.: ".$row['telephone']."</a><br>";
-        echo "<a style='text-align:center' class='information-display'>FPS payment method: ".$row["fps"]."<br><br><br></div>";
+        echo "<img src='".$icon."' style='height:160px;width:160px;' align='left'></img>";
+        echo '<h2 style="position:relative;left:50px;margin-bottom:-10px;margin-top:0px;">'.$row['username'].'</h2>';
+        echo '<p style="position:relative;left:50px;margin-bottom:10px">
+			Email: '.$row['email'].' <br>
+			Telephone: '.$row['telephone'].' <br>
+			FPS payment method: '.$row['fps'].'
+		</p>';
     }
 ?>
-<div style='float:left;width:33.33%'>
-<a id="icon-modal-button">Change Icon</a><br>
-<a id="modifyinfo-modal-button">Modify Your Information</a><br>
-<a href="/member/message.php">View Your Messages</a><br>
-<a href="/product/buy/status.php">View Status of Your Order / Your Items</a>
-</div>
-<br><br><br><br><br>
-<div style='float:left;width:50%;'><h2>Things you are Selling:</h2></div><div style='float:right;'><br><br><a href='/product/selling.php'>Post a new Item!</a></div>
-</div>
+<a id="modifyinfo-modal-button" style="position:relative;left:50px;color:#df5a07;">Edit profile</a>
+<a href="/member/message.php" style="position:relative;left:60px;">View my messages</a>
+<a href="/product/buy/status.php" style="position:relative;left:70px;">View status of my order / my items</a>
+<br clear="left">
+<button class="button" id="icon-modal-button">Edit icon</button>
+<br><br>
+<p><span style="position:relative;left:30px;font-size:1.5em;font-weight:bold;margin:0.83em 0;padding-right:50px;">Things I am selling</span> <a href="../product/selling.php">sell a new one</a></p>
+
 <div id="selling-display">
 <ul class="info-selling-display">
 <?php
@@ -138,16 +133,23 @@ if (mysqli_num_rows($result)>0) {
         echo "<p>HK$".$row["price"]."</p>";
     }
 }else{
-    echo "<a>You don't have any products for sale now! Click the link above to post a new item on Trade2CU!";
+    echo "<p>You don't have any products for sale now! Click the link above to post a new item on Trade2CU!</p>";
 }
 ?>
 </ul>
 </div>
-<footer class="footer">
-    <h4 style="text-align:center">Trade2CU</h4>
-    <a style="text-align:center" href="/aboutus/aboutus.php">About Us</a><br>
-    <a style="text-align:center;margin-bottom:10px;" href="/aboutus/faq.php">FAQ</a><br>
-</footer>
+<div class="push"></div>
+
+</div>
+
+<div class="navbar">
+	<ul>
+		<li><a class="img" href="../index.php"><img src="../img/logo.png" alt="Trade2CU logo"></img></a></li>
+		<li><a href="../aboutus/aboutus.php">About Us</a></li>
+		<li><a href="../aboutus/faq.php">FAQ</a></li>
+	</ul>
+</div>
+
 <script src="/member/register.js"></script>
 <script src="/member/upload.js"></script>
 <script src="/member/modifyinfo.js"></script>

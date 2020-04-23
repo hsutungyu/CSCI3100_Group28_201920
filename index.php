@@ -14,41 +14,38 @@
     session_start();
     include_once('member/register.php');
     ?>
-<div class="container">
+<div class="wrapper">
     <div class="navbar">
 
 <ul>
-        <li><a href="/product/buy/buying.php" class="navbar-text navbar-dropdown1-button">Buying</a>
-            <ul class="navbar-dropdown1-content">
-                <li><a href="/product/buy/buying.php">Search for Products</a>
-                    <a href="/product/categories.php">View Categories</a>
-                </li>
-            </ul>
-        </li>
-        <li><a href="/product/selling.php" class="navbar-text">Selling</a></li>
-        <li><a href="/index.php" class="navbar-img active"><img src="/img/logo.png" height="60px" align="middle"></a>
-        </li>
-        <li><a class="navbar-dropdown2-button">Search</a>
-            <ul class="navbar-dropdown2-content">
-                <li>
-                    <form>
-                        <input type="text" placeholder="Search..">
-                        <button type="submit"><i class="fa fa-search"></i></button>
-                    </form>
-                </li>
-            </ul>
-        </li>
+		<li><a class="img" href="index.php"><img src="img/logo.png" alt="Trade2CU logo"></img></a></li>
+		<li><a href="product/selling.php">Sell</a></li>
+		<li><a href="product/categories.php">Categories</a></li>
+        <li>
+			<form>
+				<input type="text" placeholder="Search.." name="search">
+				<button type="submit"><i class="fa fa-search"></i></button>
+			</form>
+		</li>
             <?php
             if (isset($_SESSION['username'])) {
-                echo('<li><a class="navbar-text" href="/member/information.php">Welcome '.$_SESSION['username'].'</a>'); ?>
-            <ul class="navbar-dropdown1-content"><li><a href="/member/logout.php" class="navbar-text">Logout</a></li></ul>
-            <?php
-            }
+                echo('<li style="float:right"><a href="member/logout.php">Logout</a></li>');
+				echo('<li style="float:right"><a class="navbar-text" href="/member/information.php">Welcome '.$_SESSION['username'].'!</a></li>'); 
+			}
             if (!isset($_SESSION['username'])) {
                 ?>
-                <li><a class="navbar-text">Welcome Guest</a>
-                <ul class="navbar-login-content"><li><div class="form"><form action="" method="post"><a>Account:</a><input type="text" id="username" name="username"><a>Password:</a><input type="password" id="password" name="password"><input type="submit" name="login" value="Login"></form></div></li></ul>
-                <ul class="navbar-dropdown1-content"><li><a id="register-modal-button">Register</a></li></ul></li>
+				<li style="float:right">
+					<a id="register-modal-button">Register</a>
+				</li>
+                <li style="float:right">
+					<form action="" method="post">
+						<label for="username" style="color:#df5a07;position:relative;right:4px;">Username:</label>
+						<input type="text" id="username" name="username" style="margin-left:-4.5px;">
+						<label for="password" style="color:#df5a07;">Password:</label>
+						<input type="password" id="password" name="password">
+						<input type="submit" name="login" value="Login">
+					</form>
+				</li>
                 <?php
             }
             defined('DB_SERVER') or define('DB_SERVER', 'localhost');
@@ -132,13 +129,19 @@ if(isset($_SESSION["username"])){
 <br><br><br>
 <h2>Product Suggestion</h2>
 <p>Season of spring! Your dorm may need a dehumidifier. Here are some products that we think you may need:</p>
+
+<div class="push"></div>
+
 </div>
 
-<footer class="footer">
-    <h4 style="text-align:center">Trade2CU</h4>
-    <a href="/aboutus/aboutus.php">About Us</a><br>
-    <a href="/aboutus/faq.php">FAQ</a><br>
-</footer>
+<div class="navbar">
+	<ul>
+		<li><a class="img" href="index.php"><img src="img/logo.png" alt="Trade2CU logo"></img></a></li>
+		<li><a href="../aboutus/aboutus.php">About Us</a></li>
+		<li><a href="../aboutus/faq.php">FAQ</a></li>
+	</ul>
+</div>
+
 <script src="/member/register.js"></script>
 </body>
 
