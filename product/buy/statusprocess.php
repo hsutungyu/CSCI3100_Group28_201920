@@ -10,11 +10,17 @@ $link=mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 if(isset($_POST["confirm-payment-submit"])){
     $query="update trans set status=4 where id=".$_POST["confirm-payment-pid"];
     $result=mysqli_query($link,$query);
+    $query="update trans set lastupdate=now() where id=".$_POST["transaction-id"];
+    $result=mysqli_query($link,$query);
 }elseif(isset($_POST["pick-up-submit"])){
     $query="update trans set status=5 where id=".$_POST["pick-up-pid"];
     $result=mysqli_query($link,$query);
+    $query="update trans set lastupdate=now() where id=".$_POST["transaction-id"];
+    $result=mysqli_query($link,$query);
 }elseif(isset($_POST["pick-up-finish-submit"])){
     $query="update trans set status=6 where id=".$_POST["pick-up-finish-pid"];
+    $result=mysqli_query($link,$query);
+    $query="update trans set lastupdate=now() where id=".$_POST["transaction-id"];
     $result=mysqli_query($link,$query);
 }
 
