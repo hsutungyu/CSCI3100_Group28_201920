@@ -219,8 +219,12 @@ if($conn->connect_error){
 	</div>
 
 	<div class="buy content">
-	      <p>My favourite</p>
-		  <span id="heart"><i class="fa fa-heart-o" aria-hidden="true"></i></span>
+          <p>My favourite</p>
+          <form id="fav-form" action="" method="POST">
+          <?php echo "<input name='fav-pid' id='fav-pid' type='text' style='display:none;' value='".$tid."'>"?>
+          <button id="fav-form-submit" type="submit" style="background-color:transparent;border:none;"><span id="heart"><i class="fa fa-heart-o" aria-hidden="true"></i></span></button>
+        </form>
+        
 		  <p>Put in shopping cart</p>
           <form id="cart-form" action="cart.php" method="POST">
 		  <input type="image" id="cart" src="/img/cart.png" alt="cart">
@@ -275,20 +279,8 @@ if ($numrows>0){
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
 </script>
-<script>
-$(document).ready(function(){
-  $("#heart").click(function(){
-     if (!($("#heart").hasClass("liked"))){
-         $("#heart").html('<i class="fa fa-heart" aria-hidden="true"></i>');	
-         $("#heart").addClass("liked");
-     }else{
-	     $("#heart").html('<i class="fa fa-heart-o" aria-hidden="true"></i>');	
-         $("#heart").removeClass("liked");
-		 }
-	});
-});
 
-</script>
+
 </div>
 <div class="push"></div>
 
