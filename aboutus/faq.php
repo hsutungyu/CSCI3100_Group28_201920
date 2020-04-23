@@ -25,7 +25,7 @@ p {
   background-image: url('https://www.w3schools.com/css/searchicon.png');
   background-position: 10px 12px;
   background-repeat: no-repeat;
-  width: 500px;
+  width: 400px;
   font-size: 16px;
   padding: 12px 20px 12px 40px;
   border: 1px solid #ddd;
@@ -47,12 +47,33 @@ p {
   font-size: 18px;
   color: black;
   display: block;
-  width: 536px;
+  width: 436px;
+  cursor: pointer;
 }
 
 #myUL li a:hover:not(.header) {
   background-color: #eee;
 }
+
+#display{
+  overflow: hidden;
+  width: 70%;
+  padding: 20px;
+  position: absolute;
+  left: 500px;
+  top: 260px;
+  }
+#frame{
+  width: 70%;
+  height: 300px;
+  border-style: none;
+  }
+.link{
+  cursor: pointer;
+  }
+.main{
+  width: 100%;
+  }
 </style>
 </head>
 
@@ -61,7 +82,7 @@ p {
     session_start();
     include_once('../member/register.php');
     ?>
-  <div class="container">
+  <div class="wrapper">
   <div class="navbar">
 
 <ul>
@@ -130,7 +151,6 @@ p {
             
 
     </ul>
-
 </div>
 <div class="navbar">
 	<ul>
@@ -147,13 +167,33 @@ p {
 
 <p>Click on the question you want to ask below.</p>
 
-<ul id="myUL">
-	<li><a href="#q1">How to buy?</a></li>
-	<li><a href="#q2">How to sell?</a></li>
-	<li><a href="#q3">How to chat with the seller?</a></li>
-	<li><a href="#q4">Can I cancel the order?</a></li>
-	<li><a href="#q5">How can I get my item?</a></li>
-</ul>
+<div class="main">
+	<ul id="myUL">
+		<li><a onclick="change('q1.php')">How to buy?</a></li>
+		<li><a onclick="change('q2.php')">How to sell?</a></li>
+		<li><a onclick="change('q3.php')">How to chat with the seller?</a></li>
+		<li><a onclick="change('q4.php')">Can I cancel the order?</a></li>
+		<li><a onclick="change('q5.php')">How can I get my item?</a></li>
+	</ul>
+	
+	<p>If you do not find your question here, please feel free to contact us!</p>
+
+	<p>Email: <a href="mailto:csci3100project28@gmail.com">csci3100project28@gmail.com</a></p>
+	
+	<div id="display">
+		<iframe id="frame"> </iframe>
+	</div>
+</div>
+<div class="push"></div>
+</div>
+
+<div class="navbar">
+	<ul>
+		<li><a class="img" href="/index.php"><img src="/img/logo.png" alt="Trade2CU logo"></img></a></li>
+		<li><a href="/aboutus/aboutus.php">About Us</a></li>
+		<li><a href="/aboutus/faq.php">FAQ</a></li>
+	</ul>
+</div>
 
 <script>
 function myFunction() {
@@ -175,22 +215,11 @@ function myFunction() {
     }
   }
 }
+
+function change(link){
+   document.getElementById("frame").src=link;
+}
 </script>
-
-<p>If you do not find your question here, please feel free to contact us!</p>
-
-<p>Email: <a href="mailto:csci3100project28@gmail.com">csci3100project28@gmail.com</a></p>
-</div>
-<div class="push"></div>
-
-</div>
-<div class="navbar">
-	<ul>
-		<li><a class="img" href="/index.php"><img src="/img/logo.png" alt="Trade2CU logo"></img></a></li>
-		<li><a href="/aboutus/aboutus.php">About Us</a></li>
-		<li><a href="/aboutus/faq.php">FAQ</a></li>
-	</ul>
-</div>
 <script src="/member/register.js"></script>
 </body>
 </html>
