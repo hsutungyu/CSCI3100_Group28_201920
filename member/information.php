@@ -87,6 +87,14 @@
     </ul>
 
 </div>
+
+<div class="navbar">
+	<ul>
+		<li style="float:right;"><a href="../product/buy/cart.php" style="padding:1px;padding-right:16px;">Shopping Cart</a></li>
+		<li style="float:right;"><img src="../img/cart.png" style="height:16px;padding:5px;"></li>
+	</ul>
+</div>
+
 <br><br>
 <?php
     if(!isset($_SESSION['username'])){
