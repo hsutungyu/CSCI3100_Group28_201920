@@ -22,6 +22,8 @@ if($canSubmit==1){
         $result=mysqli_query($link,$query);
         $query="update trans set status=4 where id=".$_POST["transaction-id"];
         $result=mysqli_query($link,$query);
+        $query="update trans set lastupdate=now() where id=".$_POST["transaction-id"];
+        $result=mysqli_query($link,$query);
     }
     if($_POST["pay-method"]==="pay-by-fps"){
         $paymethod=2;
@@ -29,6 +31,8 @@ if($canSubmit==1){
         $query="update trans set paymentmethod=".$paymethod." where id=".$_POST["transaction-id"];
         $result=mysqli_query($link,$query);
         $query="update trans set status=2 where id=".$_POST["transaction-id"];
+        $result=mysqli_query($link,$query);
+        $query="update trans set lastupdate=now() where id=".$_POST["transaction-id"];
         $result=mysqli_query($link,$query);
     }
 }

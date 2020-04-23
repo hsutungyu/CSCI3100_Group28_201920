@@ -137,6 +137,7 @@ if (mysqli_num_rows($result)>0) {
         echo "<li><a><img width='100' height='100' src='../img/product/".$row["img"]."'>";
         echo "<h4>".$row["name"]."</h4>";
         echo "<p>HK$".$row["price"]."</p>";
+        echo "<form action='informationprocess.php' method='POST'><input name='cancel-listing-pid' style='display:none;' type='text' value='".$row["id"]."'><input type='submit' value='Cancel this listing'></form>";
     }
 }else{
     echo "<p>You don't have any products for sale now! Click the link above to post a new item on Trade2CU!</p>";
