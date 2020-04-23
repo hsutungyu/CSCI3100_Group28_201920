@@ -69,6 +69,15 @@ font-size: 80%;
    
 
 </style>
+<style>
+.fa {
+  font-size: 25px;
+}
+
+.checked {
+  color: orange;
+}
+</style>
 
 <body>
 <?php
@@ -184,7 +193,76 @@ if($conn->connect_error){
 	</div>
 	<div class="productinfo content">
 	     <?php echo "<p id='name'>".$name."</p>"; ?>
-		 <p id="rating">Rating Here(With number of rating/comments received)</p>
+		<?php 
+		 $query="select rate from rating where mid=".$mid;
+                 $result=mysqli_query($conn,$query);
+		 $numrows=mysqli_num_rows($result);
+		 $sum=0;
+		 $count=0;
+		 if ($numrows>0){
+		     while ($row2=mysqli_fetch_assoc($result)){
+				 $sum=$sum+$row2['rate'];
+				 $count++;
+			 }
+		 }
+		 $average=$sum/$count;
+		 $approx=round($average);
+		 if ($approx==5){
+	         ?>
+<span class="heading">User Rating</span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<p><?php echo $average." average based on ".$count." reviews."?></p>
+                 <?php
+		 }
+		 elseif ($approx==4){
+		 ?>
+<span class="heading">User Rating</span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star "></span>
+<p><?php echo $average." average based on ".$count." reviews."?></p>
+                 <?php
+		 }
+		 elseif ($approx==3){
+		 ?>
+<span class="heading">User Rating</span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star "></span>
+<span class="fa fa-star "></span>
+<p><?php echo $average." average based on ".$count." reviews."?></p>
+                 <?php
+		 }
+		 elseif ($approx==2){
+		 ?>
+<span class="heading">User Rating</span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star "></span>
+<span class="fa fa-star "></span>
+<span class="fa fa-star "></span>
+<p><?php echo $average." average based on ".$count." reviews."?></p>
+                 <?php
+		 }
+		 else{
+		 ?>
+<span class="heading">User Rating</span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star "></span>
+<span class="fa fa-star "></span>
+<span class="fa fa-star "></span>
+<span class="fa fa-star "></span>
+<p><?php echo $average." average based on ".$count." reviews."?></p>
+                 <?php
+		 }
+		 ?>
 	     <hr>
 		 <?php echo "<p id='price'>"."$".$price."</p>"; ?>
 		 <hr>
