@@ -12,7 +12,7 @@
 #cate{
   float: left;
   width: 20%;
-  padding: 20px;
+  padding: 20px 0;
   }
 
 #display{
@@ -29,9 +29,8 @@
   cursor: pointer;
   }
 .main{
-  width: 1200px;
+  width: 100%;
   }
-
 </style>
 
 <body>
@@ -39,7 +38,7 @@
     session_start();
     include_once('../member/register.php');
     ?>
-<div class="container">
+<div class="wrapper">
 <div class="navbar">
 
 <ul>
@@ -120,18 +119,19 @@
 
 	<div class="main">
 	<div id="cate">
-	  <ul>
-	    <li><p onclick="change('http://localhost/product/Textbook%20and%20Sources.php')"id="item" class="link"><u>Textbooks and Sources</u></p></li><br>
-		<li><p onclick="change('http://localhost/product/Electronics.php')" id="item" class="link"><u>Electronics</u></p></li><br>
-		<li><p onclick="change('http://localhost/product/Furnitures.php')" id="item" class="link"><u>Furnitures</u></p></li><br>
-		<li><p onclick="change('http://localhost/product/Dorm.php')" id="item" class="link"><u>Dorm Items and Necesities</u></p></li><br>
-		<li><p onclick="change('http://localhost/product/Clothes.php')" id="item" class="link"><u>Clothes</u></p></li><br>
-		<li><p onclick="change('http://localhost/product/Stationery.php')" id="item" class="link"><u>Stationery</u></p></li><br>
-		<li><p onclick="change('http://localhost/product/Others.php')" id="item" class="link"><u>Others</u></p></li><br>
+	  <ul style="list-style-type:none;">
+	    <li><h2>Categories</h2></li>
+	    <li><p onclick="change('http://localhost/product/Textbook%20and%20Sources.php')"id="item" class="link"><u>Textbooks and Sources</u></p></li>
+		<li><p onclick="change('http://localhost/product/Electronics.php')" id="item" class="link"><u>Electronics</u></p></li>
+		<li><p onclick="change('http://localhost/product/Furnitures.php')" id="item" class="link"><u>Furnitures</u></p></li>
+		<li><p onclick="change('http://localhost/product/Dorm.php')" id="item" class="link"><u>Dorm Items and Necesities</u></p></li>
+		<li><p onclick="change('http://localhost/product/Clothes.php')" id="item" class="link"><u>Clothes</u></p></li>
+		<li><p onclick="change('http://localhost/product/Stationery.php')" id="item" class="link"><u>Stationery</u></p></li>
+		<li><p onclick="change('http://localhost/product/Others.php')" id="item" class="link"><u>Others</u></p></li>
 	  </ul>
 	</div>
 	<div id="display">
-	    <iframe id="frame"> </iframe>
+	    <iframe id="frame" style="border-left:2px solid #bfbfbf;"> </iframe>
 	</div>
 	</div>
 	
@@ -140,9 +140,11 @@ function change(link){
    document.getElementById("frame").src=link;
 }
 </script>	 
-</div>
 
 <div class="push"></div>
+</div>
+
+
 
 
 <div class="navbar">
