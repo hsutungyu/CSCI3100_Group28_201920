@@ -11,11 +11,19 @@
 		p {
 			text-align: justify;
 		}
+		*{
+			overflow:hidden;
+		}
 	</style>
 </head>
 <body>
 
-<p>After finding the product you decided to buy, you may put it in the shopping cart. If you finished shopping, proceed to checkout! You can choose either pay at pick up or pay by FPS. If you want to pay at pick up, you need to arrange pick ip time and venue in "message" with the seller. If you pay by FPS, wait for the confirmation of payment after using the FPS system, then arrange pick ip time and venue with the seller and confirm the transaction finished to ensure no scamming. Enjoy your shopping!</p>
+<a>After finding the product you decided to buy, you may put it in the shopping cart. </a><br>
+<a>If you finished shopping, proceed to checkout! </a><br>
+<a>You can choose either pay at pick up or pay by FPS. </a><br>
+<a>If you want to pay at pick up, you need to arrange pick up time and venue in "message" with the seller. </a><br>
+<a>If you pay by FPS, wait for the confirmation of payment after using the FPS system, then arrange pick up time and venue with the seller.</a><br>
+<a>In either case, remember to confirm the transaction finished to ensure no scamming. Enjoy your shopping with Trade2CU!</a>
 
 </body>
 </html>

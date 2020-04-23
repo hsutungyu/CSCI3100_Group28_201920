@@ -11,11 +11,14 @@
 		p {
 			text-align: justify;
 		}
+		*{
+			overflow:hidden;
+		}
 	</style>
 </head>
 <body>
 
-<p>You can communicate with the seller in "message". Find it through the product information!</p>
+<p>You can communicate with the seller in "message" which can be found in your user information page!</p>
 
 </body>
 </html>

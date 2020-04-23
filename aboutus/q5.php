@@ -11,11 +11,14 @@
 		p {
 			text-align: justify;
 		}
+		*{
+			overflow:hidden;
+		}
 	</style>
 </head>
 <body>
 
-<p>You can communicate with the seller in "message". You can arrange the pick up time,date and venue with the seller after the transaction.</p>
+<p>You can communicate with the seller in "message". You can arrange the pick up time, date and venue with the seller after the transaction.</p>
 
 </body>
 </html>
