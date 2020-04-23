@@ -95,7 +95,7 @@
 	<div class="split left">
       <div class="centered">
         <img src="test.jpg" alt="Product" width="400" height="400">
-        <h2>Product Name<span id="heart"><i class="fa fa-heart-o" aria-hidden="true"></i></span></h2>
+        <h2>Product Name</h2>
 		<h3><b>$???</b></h3>
         <h4>Seller</h4>
       </div>
@@ -104,41 +104,12 @@
     <div class="split right">
       <div class="centered">
         <img src="test.jpg" alt="Product" width="400" height="400">
-        <h2>Product Name<span id="heart"><i class="fa fa-heart-o" aria-hidden="true"></i></span></h2>
+        <h2>Product Name</h2>
 		<h3><b>$???</b></h3>
         <h4>Seller</h4>
       </div>
     </div>
         </div>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
-</script>
-<script>
-$(document).ready(function(){
-  $("#heart").click(function(){
-     if (!($("#heart").hasClass("liked"))){
-         $("#heart").html('<i class="fa fa-heart" aria-hidden="true"></i>');	
-         $("#heart").addClass("liked");
-     }else{
-	     $("#heart").html('<i class="fa fa-heart-o" aria-hidden="true"></i>');	
-         $("#heart").removeClass("liked");
-		 }
-	});
-});
-
-</script>
-<?php
-$servername="localhost";
-$username="root";
-$password="123456";
-$dbname="project";
-$conn=new mysqli($servername, $username, $password, $dbname);
-
-if($conn->connect_error){
-	die("Connect failed:". $conn->connect_error);
-}
-
-
-?>
 	<footer class="footer">
     <h4 style="text-align:center">Trade2CU</h4>
     <a style="text-align:center" href="/aboutus/aboutus.php">About Us</a><br>

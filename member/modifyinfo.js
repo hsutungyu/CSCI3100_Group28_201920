@@ -1,14 +1,19 @@
-var modal = document.getElementById("modifyinfo-modal");
-var btn = document.getElementById("modifyinfo-modal-button");
+var modal2 = document.getElementById("modifyinfo-modal");
+var btn2 = document.getElementById("modifyinfo-modal-button");
+var span2 = document.getElementsByClassName("close2")[0];
 
-btn.onclick = function () {
-  modal.style.display = "block";
+btn2.onclick = function () {
+  modal2.style.display = "block";
 };
 
 window.onclick = function (event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
+  if (event.target == modal2) {
+    modal2.style.display = "none";
   }
+};
+
+span2.onclick = function () {
+  modal2.style.display = "none";
 };
 
 $("#modifyinfo-form").on("submit", function (event) {

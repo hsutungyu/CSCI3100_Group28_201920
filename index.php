@@ -42,8 +42,8 @@
 		<li><a href="product/selling.php">Sell</a></li>
 		<li><a href="product/categories.php">Categories</a></li>
         <li>
-			<form>
-				<input type="text" placeholder="Search.." name="search">
+        <form  action="/search.php" method="get">
+				<input type="text" placeholder="Search.." name="text">
 				<button type="submit"><i class="fa fa-search"></i></button>
 			</form>
 		</li>
@@ -108,12 +108,12 @@
 
 <div class="navbar">
 	<ul>
-		<li style="float:right;"><a href="product/buy/cart.php" style="padding:1px;padding-right:16px;">Shopping Cart</a></li>
-		<li style="float:right;"><img src="../img/cart.png" style="height:16px;padding:5px;"></li>
+		<li style="float:right;"><a href="/product/buy/cart.php" style="padding:1px;padding-right:16px;">Shopping Cart</a></li>
+		<li style="float:right;"><img src="/img/cart.png" style="height:16px;padding:5px;"></li>
 	</ul>
 </div>
 
-<br><br>
+
 <h2>News Feed</h2>
 <?php
 if(!isset($_SESSION['username'])){

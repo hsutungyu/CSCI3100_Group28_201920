@@ -19,6 +19,9 @@ if(!empty($_POST["modifyinfo-email"])){
 if(!empty($_POST["modifyinfo-telephone"])){
     $telephone=$_POST["modifyinfo-telephone"];
 }
+if(!empty($_POST["modifyinfo-fps"])){
+    $fps=$_POST["modifyinfo-fps"];
+}
 
     define('DB_SERVER', 'localhost');
     define('DB_USERNAME', 'root');
@@ -66,7 +69,7 @@ if(!empty($_POST["modifyinfo-telephone"])){
             $canSubmit=0;
         }
     }
-    
+
     if ($canSubmit===1) {
         if(!empty($password)&&!empty($passwordConfirm)){
             $password_hashed=password_hash($password, PASSWORD_DEFAULT);
@@ -80,6 +83,10 @@ if(!empty($_POST["modifyinfo-telephone"])){
         if(!empty($telephone)){
             $query="update member set telephone ='".$telephone."'where username = '".$_SESSION["username"]."'";
             $query_input_data=mysqli_query($link,$query);
+        }
+        if(!empty($fps)){
+            $query="update member set fps='".$fps."' where username = '".$_SESSION["username"]."'";
+            $result=mysqli_query($link,$query);
         }
     }
     $array=array('canSubmit'=>$canSubmit,'emailErr'=>$emailErr,'passwordErr'=>$passwordErr,'passwordConfirmErr'=>$passwordConfirmErr,'telephoneErr'=>$telephoneErr);

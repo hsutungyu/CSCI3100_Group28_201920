@@ -10,6 +10,7 @@ $row=mysqli_fetch_assoc($result);
 ?>
 <div class="modal" id="modifyinfo-modal">
 <div class="modal-content">
+<span class="close2">&times;</span><br>
 <form class="modifyinfo-form" id="modifyinfo-form" action="" method="post">
         <h1>Modify Your Information (Leave Blank if Necessary)</h1><br>
         <a class="modifyinfo-text">Password: (8 characters or more, with at least one uppercase letter and one lowercase letter)</a><br>
@@ -17,9 +18,11 @@ $row=mysqli_fetch_assoc($result);
         <a class="modifyinfo-text">Confirm Password: </a><br>
         <input class="modifyinfo-input" type="password" id="modifyinfo-password-confirm" name="modifyinfo-password-confirm"><a>      </a><a class="modifyinfo-err" id="passwordConfirmErr1"></a><br>
         <a class="modifyinfo-text">Email:</a><br>
-        <input class="modifyinfo-input" type="text" id="modifyinfo-email" name="modifyinfo-email"><a>      </a><a class="modifyinfo-err" id="emailErr1"></a><br>
+        <input class="modifyinfo-input" type="text" style="width:30vw;" id="modifyinfo-email" name="modifyinfo-email"><a>      </a><a class="modifyinfo-err" id="emailErr1"></a><br>
         <a class="modifyinfo-text">Telephone No.:</a><br>
-        <input class="modifyinfo-input" type="text" style="width:30vw;" id="modifyinfo-telephone" name="modifyinfo-telephone"><a>      </a><a class="modifyinfo-err" id="telephoneErr1"></a><br>
+        <input class="modifyinfo-input" type="text" id="modifyinfo-telephone" name="modifyinfo-telephone"><a>      </a><a class="modifyinfo-err" id="telephoneErr1"></a><br>
+        <a class="modifyinfo-text">FPS payment method:</a><br>
+        <input class="modifyinfo-input" type="text" id="modifyinfo-fps" name="modifyinfo-fps"><br>
         <input class="modifyinfo-submit" id="modifyinfo-submit" name="modifyinfo-submit" type="submit" value="Register"><br>
         <a></a>
     </form>

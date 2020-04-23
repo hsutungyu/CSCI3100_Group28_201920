@@ -19,37 +19,34 @@
 <div class="navbar">
 
 <ul>
-        <li><a href="/product/buy/buying.php" class="navbar-text navbar-dropdown1-button">Buying</a>
-            <ul class="navbar-dropdown1-content">
-                <li><a href="/product/buy/buying.php">Search for Products</a>
-                    <a href="/product/categories.php">View Categories</a>
-                </li>
-            </ul>
-        </li>
-        <li><a href="/product/selling.php" class="navbar-text">Selling</a></li>
-        <li><a href="/index.php" class="navbar-img active"><img src="/img/logo.png" height="60px" align="middle"></a>
-        </li>
-        <li><a class="navbar-dropdown2-button">Search</a>
-            <ul class="navbar-dropdown2-content">
-                <li>
-                    <form action="/search.php" method="get">
-                        <input name='text' type="text" placeholder="Search..">
-                        <button type="submit"><i class="fa fa-search"></i></button>
-                    </form>
-                </li>
-            </ul>
-        </li>
+		<li><a class="img" href="/index.php"><img src="/img/logo.png" alt="Trade2CU logo"></img></a></li>
+		<li><a href="/product/selling.php">Sell</a></li>
+		<li><a href="/product/categories.php">Categories</a></li>
+        <li>
+        <form  action="/search.php" method="get">
+				<input type="text" placeholder="Search.." name="text">
+				<button type="submit"><i class="fa fa-search"></i></button>
+			</form>
+		</li>
             <?php
             if (isset($_SESSION['username'])) {
-                echo('<li><a class="navbar-text" href="/member/information.php">Welcome '.$_SESSION['username'].'</a>'); ?>
-            <ul class="navbar-dropdown1-content"><li><a href="/member/logout.php" class="navbar-text">Logout</a></li></ul>
-            <?php
-            }
+                echo('<li style="float:right"><a href="/member/logout.php">Logout</a></li>');
+				echo('<li style="float:right"><a class="navbar-text" href="/member/information.php">Welcome '.$_SESSION['username'].'!</a></li>'); 
+			}
             if (!isset($_SESSION['username'])) {
                 ?>
-                <li><a class="navbar-text">Welcome Guest</a>
-                <ul class="navbar-login-content"><li><div class="form"><form action="" method="post"><a>Account:</a><input type="text" id="username" name="username"><a>Password:</a><input type="password" id="password" name="password"><input type="submit" name="login" value="Login"></form></div></li></ul>
-                <ul class="navbar-dropdown1-content"><li><a id="register-modal-button">Register</a></li></ul></li>
+				<li style="float:right">
+					<a id="register-modal-button">Register</a>
+				</li>
+                <li style="float:right">
+					<form action="" method="post">
+						<label for="username" style="color:#df5a07;position:relative;right:4px;">Username:</label>
+						<input type="text" id="username" name="username" style="margin-left:-4.5px;">
+						<label for="password" style="color:#df5a07;">Password:</label>
+						<input type="password" id="password" name="password">
+						<input type="submit" name="login" value="Login">
+					</form>
+				</li>
                 <?php
             }
             defined('DB_SERVER') or define('DB_SERVER', 'localhost');
@@ -89,8 +86,14 @@
     </ul>
 
 </div>
+<div class="navbar">
+	<ul>
+		<li style="float:right;"><a href="/product/buy/cart.php" style="padding:1px;padding-right:16px;">Shopping Cart</a></li>
+		<li style="float:right;"><img src="/img/cart.png" style="height:16px;padding:5px;"></li>
+	</ul>
+</div>
 
-<br><br><br><br><br><br><br><br>
+
 
 <h2>Transaction</h2>
 <h3>Your Order</h3>
@@ -120,6 +123,10 @@ while($row=mysqli_fetch_assoc($result)){
     echo "<a>Status: ".$status[$row["status"]];
     if($row["status"]==1){
         echo "   <a href='/product/buy/transaction.php?tid=".$row["id"]."'>Start Payment</a></a><br>";
+    }elseif($row["status"]==5){
+        echo "   <form action='statusprocess.php' method='POST'><input type='submit' name='pick-up-finish-submit' value='Product Received'>";
+        echo "<input type='text' name='pick-up-finish-pid' style='display:none;' value='".$row["id"]."'>";
+        echo "</form></a><br>";
     }else{
         echo "</a>";
     }
@@ -131,46 +138,45 @@ while($row=mysqli_fetch_assoc($result)){
 <h3>Your Item(s) for Sale</h3>
 <ul>
 <?php
-$query="select * from product where product.mid=".$id;
+$query="select product.name, product.price, trans.id from trans inner join product on trans.pid=product.id where product.mid=".$id;
 $result=mysqli_query($link,$query);
 while($row=mysqli_fetch_assoc($result)){
     echo "<li><a>Product Name: ".$row["name"]."</a><br>";
     echo "<a>Price: HK$".$row["price"]."</a><br>";
-    $query="select trans.id from trans inner join product on trans.pid=product.id where product.mid=".$id;
-    $result1=mysqli_query($link,$query);
-    $row1=mysqli_fetch_assoc($result1);
-    if(mysqli_num_rows($result1)==0){
-        echo "<a>Status: Not purchased yet</a></li>";
-    }else{
-        $tid=$row1["id"];
-        $query="select status, buyid from trans where id=".$tid;
-        $result2=mysqli_query($link,$query);
-        $row2=mysqli_fetch_assoc($result2);
-        $query="select username from member where id=".$row2["buyid"];
-        $result3=mysqli_query($link,$query);
-        $row3=mysqli_fetch_assoc($result3);
-        echo "<a>Bought by: ".$row3["username"]."</a><br>";
-        echo "<a>Status: ".$status[$row2["status"]];
-        if($row2["status"]==2){
-            echo "  <form action='statusprocess.php' method='POST'><input type='submit' name='confirm-payment-submit' value='Confirm payment of buyer for product with id ".$row["id"]."'>";
-            echo "<input type='text' name='confirm-payment-pid' style='display:none;' value='".$row["id"]."'>";
-            echo "</form></a><br>";
-        }elseif($row2["status"]==4){
-            echo "  <form action='statusprocess.php' method='POST'><input type='submit' name='pick-up-submit' value='Pick up coordinated for product with id ".$row["id"]."'>";
-            echo "<input type='text' name='pick-up-pid' style='display:none;' value='".$row["id"]."'>";
-            echo "</form></a><br>";
+            $query="select status, buyid from trans where id=".$row["id"];
+            $result2=mysqli_query($link,$query);
+            $row2=mysqli_fetch_assoc($result2);
+            $query="select username from member where id=".$row2["buyid"];
+            $result3=mysqli_query($link,$query);
+            $row3=mysqli_fetch_assoc($result3);
+            echo "<a>Bought by: ".$row3["username"]."</a><br>";
+            echo "<a>Status: ".$status[$row2["status"]];
+            if($row2["status"]==2){
+                echo "  <form action='statusprocess.php' method='POST'><input type='submit' name='confirm-payment-submit' value='Payment Received'>";
+                echo "<input type='text' name='confirm-payment-pid' style='display:none;' value='".$row["id"]."'>";
+                echo "</form></a><br>";
+            }elseif($row2["status"]==4){
+                echo "  <form action='statusprocess.php' method='POST'><input type='submit' name='pick-up-submit' value='Pick up coordinated'>";
+                echo "<input type='text' name='pick-up-pid' style='display:none;' value='".$row["id"]."'>";
+                echo "</form></a><br>";
+            }
         }
-    }
-}
+
 ?>
 </ul>
 </div>
 
-<footer class="footer">
-    <h4 style="text-align:center">Trade2CU</h4>
-    <a href="/aboutus/aboutus.php">About Us</a><br>
-    <a href="/aboutus/faq.php">FAQ</a><br>
-</footer>
+</div>
+<div class="push"></div>
+
+
+<div class="navbar">
+	<ul>
+		<li><a class="img" href="/index.php"><img src="/img/logo.png" alt="Trade2CU logo"></img></a></li>
+		<li><a href="/aboutus/aboutus.php">About Us</a></li>
+		<li><a href="/aboutus/faq.php">FAQ</a></li>
+	</ul>
+</div>
 <script src="/member/register.js"></script>
 </body>
 

@@ -20,12 +20,12 @@
     <div class="navbar">
 
 <ul>
-		<li><a class="img" href="../index.php"><img src="../img/logo.png" alt="Trade2CU logo"></img></a></li>
-		<li><a href="../product/selling.php">Sell</a></li>
-		<li><a href="../product/categories.php">Categories</a></li>
+		<li><a class="img" href="/index.php"><img src="/img/logo.png" alt="Trade2CU logo"></img></a></li>
+		<li><a href="/product/selling.php">Sell</a></li>
+		<li><a href="/product/categories.php">Categories</a></li>
         <li>
-			<form>
-				<input type="text" placeholder="Search.." name="search">
+        <form  action="/search.php" method="get">
+				<input type="text" placeholder="Search.." name="text">
 				<button type="submit"><i class="fa fa-search"></i></button>
 			</form>
 		</li>
@@ -90,12 +90,10 @@
 
 <div class="navbar">
 	<ul>
-		<li style="float:right;"><a href="../product/buy/cart.php" style="padding:1px;padding-right:16px;">Shopping Cart</a></li>
-		<li style="float:right;"><img src="../img/cart.png" style="height:16px;padding:5px;"></li>
+		<li style="float:right;"><a href="/product/buy/cart.php" style="padding:1px;padding-right:16px;">Shopping Cart</a></li>
+		<li style="float:right;"><img src="/img/cart.png" style="height:16px;padding:5px;"></li>
 	</ul>
 </div>
-
-<br><br>
 <?php
     if(!isset($_SESSION['username'])){
         echo "<script>alert('Please login before accessing this page!');window.location.href='/index.php';</script>";
@@ -152,9 +150,9 @@ if (mysqli_num_rows($result)>0) {
 
 <div class="navbar">
 	<ul>
-		<li><a class="img" href="../index.php"><img src="../img/logo.png" alt="Trade2CU logo"></img></a></li>
-		<li><a href="../aboutus/aboutus.php">About Us</a></li>
-		<li><a href="../aboutus/faq.php">FAQ</a></li>
+		<li><a class="img" href="/index.php"><img src="/img/logo.png" alt="Trade2CU logo"></img></a></li>
+		<li><a href="/aboutus/aboutus.php">About Us</a></li>
+		<li><a href="/aboutus/faq.php">FAQ</a></li>
 	</ul>
 </div>
 

@@ -12,6 +12,10 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <style>
+* {
+	font-family: "Baloo 2", cursive;
+}
+
 p {
 	text-align: justify;
 }
@@ -23,23 +27,23 @@ p {
     session_start();
     include_once('../member/register.php');
     ?>
-	<div class="wrapper">
-		<div class="navbar">
-	
-	<ul>
-		<li><a class="img" href="../index.php"><img src="../img/logo.png" alt="Trade2CU logo"></img></a></li>
-		<li><a href="../product/selling.php">Sell</a></li>
-		<li><a href="../product/categories.php">Categories</a></li>
+	<div class="container">
+	<div class="navbar">
+
+<ul>
+		<li><a class="img" href="/index.php"><img src="/img/logo.png" alt="Trade2CU logo"></img></a></li>
+		<li><a href="/product/selling.php">Sell</a></li>
+		<li><a href="/product/categories.php">Categories</a></li>
         <li>
-			<form>
-				<input type="text" placeholder="Search.." name="search">
+		<form  action="/search.php" method="get">
+				<input type="text" placeholder="Search.." name="text">
 				<button type="submit"><i class="fa fa-search"></i></button>
 			</form>
 		</li>
             <?php
             if (isset($_SESSION['username'])) {
-                echo('<li style="float:right"><a href="../member/logout.php">Logout</a></li>');
-				echo('<li style="float:right"><a class="navbar-text" href="../member/information.php">Welcome '.$_SESSION['username'].'!</a></li>'); 
+                echo('<li style="float:right"><a href="/member/logout.php">Logout</a></li>');
+				echo('<li style="float:right"><a class="navbar-text" href="/member/information.php">Welcome '.$_SESSION['username'].'!</a></li>'); 
 			}
             if (!isset($_SESSION['username'])) {
                 ?>
@@ -94,15 +98,14 @@ p {
     </ul>
 
 </div>
-
 <div class="navbar">
 	<ul>
-		<li style="float:right;"><a href="../product/buy/cart.php" style="padding:1px;padding-right:16px;">Shopping Cart</a></li>
-		<li style="float:right;"><img src="../img/cart.png" style="height:16px;padding:5px;"></li>
+		<li style="float:right;"><a href="/product/buy/cart.php" style="padding:1px;padding-right:16px;">Shopping Cart</a></li>
+		<li style="float:right;"><img src="/img/cart.png" style="height:16px;padding:5px;"></li>
 	</ul>
 </div>
 
-<br><br>
+
 
 <h2 style="text-align:center">About Creators</h2>
 
@@ -111,20 +114,17 @@ p {
 <h2 style="text-align:center">About Trade2CU</h2>
 
 <p>Trade2CU acts like an exclusive shopping center for CUHK. Teachers and students can trade their items in CUHK during their school time, which can reduce the cost and the time consumed to buy an item. Any CUHK members can sell their items and buy items sold by other members on this website. No need to find people who can offer you necessities by yourself. You only need to search the item you want and the website will help you find the right person. Even if you have any special requirements, you can still find your ideal items through chatting with sellers on this website.</p>
-
-<h2 style="text-align:center">Our Contact :)</h2>
-
-<p>If you want to tell us something, please send us email at <a href="mailto:csci3100project28@gmail.com">csci3100project28@gmail.com</a>!</p>
+</div>
+<div class="push" style="min-height:100px;"></div>
 
 </div>
-
 <div class="navbar">
 	<ul>
-		<li><a class="img" href="../index.php"><img src="../img/logo.png" alt="Trade2CU logo"></img></a></li>
-		<li><a href="aboutus.php">About Us</a></li>
-		<li><a href="faq.php">FAQ</a></li>
+		<li><a class="img" href="/index.php"><img src="/img/logo.png" alt="Trade2CU logo"></img></a></li>
+		<li><a href="/aboutus/aboutus.php">About Us</a></li>
+		<li><a href="/aboutus/faq.php">FAQ</a></li>
 	</ul>
 </div>
-<script src="../member/register.js"></script>
+<script src="/member/register.js"></script>
 </body>
 </html>

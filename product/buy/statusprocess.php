@@ -8,14 +8,17 @@ $link=mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 
 
 if(isset($_POST["confirm-payment-submit"])){
-    $split=explode(" ",$_POST["confirm-payment-submit"]);
-    $pid=$split[count($split)-1];
-    $query="update trans set status=4 where pid=".$pid;
+    $query="update trans set status=4 where id=".$_POST["confirm-payment-pid"];
     $result=mysqli_query($link,$query);
 }elseif(isset($_POST["pick-up-submit"])){
-    $split=explode(" ",$_POST["pick-up-submit"]);
-    $pid=$split[count($split)-1];
-    $query="update trans set status=5 where pid=".$pid;
+    $query="update trans set status=5 where id=".$_POST["pick-up-pid"];
+    $result=mysqli_query($link,$query);
+}elseif(isset($_POST["pick-up-finish-submit"])){
+    $query="update trans set status=6 where id=".$_POST["pick-up-finish-pid"];
     $result=mysqli_query($link,$query);
 }
+
+
+header("Location: status.php")
+
 ?>
