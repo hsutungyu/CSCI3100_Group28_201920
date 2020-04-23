@@ -11,11 +11,14 @@
 		p {
 			text-align: justify;
 		}
+		*{
+			overflow:hidden;
+		}
 	</style>
 </head>
 <body>
 
-<p>Of course you can! Just go to your account page, scroll down and click the cancel button of the product that you don'y want to sell anymore.</p>
+<p>Of course you can! Just go to your account page, scroll down and click the cancel button to unlist the product that you don't want to sell anymore.</p>
 
 </body>
 </html>

@@ -11,11 +11,17 @@
 		p {
 			text-align: justify;
 		}
+		*{
+			overflow:hidden;
+		}
 	</style>
 </head>
 <body>
 
-<p>After logging in, click "Sell", then you can upload the photo of the item that you want to sell on the left side. Fill in the item infomation on the right side.Then you may sell your item by simply clicking "Submit".You can view the things you are selling in your account page. Once your product is ordered, you will receive notification in news feed. Then you may confirm the payment(if necessary) and arrange the pick up time and date with the buyer. Then your item is sold!</p>
+<a>After logging in, click "Sell", then you can upload the photo of the item that you want to sell on the left hand side and fill in the item infomation on the right hand side. </a><br>
+<a>Then you may list your item by simply clicking "Submit". You can view the items you are selling in your account page. </a><br>
+<a>Once your product is ordered by someone, you will receive notification in news feed.</a><br>
+<a>Then you may confirm the payment (if necessary) and arrange the pick up time and date with the buyer. Then your item is sold!</a>
 
 </body>
 </html>
