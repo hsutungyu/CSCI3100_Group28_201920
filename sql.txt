@@ -1,0 +1,9 @@
+create table categories (id int primary key auto_increment, category int, pid int);
+create table comment (id int primary key auto_increment, pid int, mid int, comment varchar(255), time datetime);
+create table member (id int primary key auto_increment, username varchar(50), password varchar(255), email varchar(255), telephone char(8), icon char(17), lastlogin datetime, fps varchar(255));
+create table message (id int primary key auto_increment, receiveid int, sendid int, time datetime, message varchar(255), pid int);
+create table myfav (id int primary key auto_increment, pid int, mid int);
+create table product (id int primary key auto_increment, name varchar(255), type int, price decimal(5,1), info varchar(255), mid int, img char(18));
+create table rating (id int primary key auto_increment, mid int, rate int, pid int);
+create table suggestion (id int primary key auto_increment, description varchar(255), keywords varchar(255));
+create table trans (id int primary key auto_increment, pid int, buyid int, time datetime, status int, paymentmethod int, lastupdate datetime);
