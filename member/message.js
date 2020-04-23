@@ -8,6 +8,7 @@ var msgpid = document.getElementById("message-pid");
 for (var i = 0; i < msgboxbtn.length; i++)
   (function (i) {
     msgboxbtn[i].onclick = function () {
+      msgboxbtn[i].style.color = "#df5a07";
       msgbox[i].style.display = "block";
       msginput.style.display = "inline-block";
       msgsubmit.style.display = "inline-block";
@@ -20,6 +21,7 @@ for (var i = 0; i < msgboxbtn.length; i++)
       for (var j = 0; j < msgboxbtn.length; j++)
         (function (j) {
           if (i != j) {
+            msgboxbtn[j].style.color = "black";
             msgbox[j].style.display = "none";
           }
         })(j);

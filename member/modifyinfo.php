@@ -23,7 +23,7 @@ $row=mysqli_fetch_assoc($result);
         <input class="modifyinfo-input" type="text" id="modifyinfo-telephone" name="modifyinfo-telephone"><a>      </a><a class="modifyinfo-err" id="telephoneErr1"></a><br>
         <a class="modifyinfo-text">FPS payment method:</a><br>
         <input class="modifyinfo-input" type="text" id="modifyinfo-fps" name="modifyinfo-fps"><br>
-        <input class="modifyinfo-submit" id="modifyinfo-submit" name="modifyinfo-submit" type="submit" value="Register"><br>
+        <input class="modifyinfo-submit" id="modifyinfo-submit" name="modifyinfo-submit" type="submit" value="Update"><br>
         <a></a>
     </form>
 </div>

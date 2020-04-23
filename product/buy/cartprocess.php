@@ -12,7 +12,7 @@ $row=mysqli_fetch_assoc($result);
 $id=$row['id'];
 
 foreach($_SESSION["shopping-cart"] as &$pid){
-    $query="insert into trans values (null, ".$pid.",".$id.",now(),1,null)";
+    $query="insert into trans values (null, ".$pid.",".$id.",now(),1,null,now())";
     $result=mysqli_query($link,$query);
 }
 unset($_SESSION["shopping-cart"]);

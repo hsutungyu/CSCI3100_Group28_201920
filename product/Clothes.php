@@ -26,7 +26,9 @@
   width: 100%;
   clear:both;
 }
-
+*{
+  overflow:hidden;
+}
 </style>
 <body>
     <?php

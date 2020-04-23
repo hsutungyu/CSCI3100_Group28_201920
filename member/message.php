@@ -174,8 +174,8 @@ unset($pid);
 
 </div>
 <form id="message-form" action="" method="post">
-<input name="message-submit" id="message-submit" style="display:none;float:right;height:4.5vh;" type="submit">
-<input name="message-input" id="message-input" style="display:none;float:right;width:80%;height:4vh;" type="text">
+<input name="message-input" id="message-input" style="display:none;float:left;width:60%;height:4vh;" type="text">
+<input name="message-submit" id="message-submit" style="display:none;float:left;height:4.5vh;" type="submit" value='Send Message'>
 <input name="message-receive" style="display:none;" id="message-receive" type="text">
 <input name="message-pid" style="display:none;" id="message-pid" type="text">
 </form>

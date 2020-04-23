@@ -53,7 +53,7 @@ if(!isset($_SESSION['username'])){
 		</li>
             <?php
             if (isset($_SESSION['username'])) {
-                echo('<li style="float:right"><a href="member/logout.php">Logout</a></li>');
+                echo('<li style="float:right"><a href="/member/logout.php">Logout</a></li>');
 				echo('<li style="float:right"><a class="navbar-text" href="/member/information.php">Welcome '.$_SESSION['username'].'!</a></li>'); 
 			}
             if (!isset($_SESSION['username'])) {

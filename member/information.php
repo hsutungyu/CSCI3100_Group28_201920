@@ -134,16 +134,38 @@ $query="select * from product where mid=".$id;
 $result=mysqli_query($link,$query);
 if (mysqli_num_rows($result)>0) {
     while ($row=mysqli_fetch_assoc($result)) {
-        echo "<li><a><img width='100' height='100' src='../img/product/".$row["img"]."'>";
+        echo "<li><a href='/product/buy/buying.php?pid=".$row["id"]."'><img width='100' height='100' src='../img/product/".$row["img"]."'>";
         echo "<h4>".$row["name"]."</h4>";
         echo "<p>HK$".$row["price"]."</p>";
-        echo "<form action='informationprocess.php' method='POST'><input name='cancel-listing-pid' style='display:none;' type='text' value='".$row["id"]."'><input type='submit' value='Cancel this listing'></form>";
+        echo "<form action='informationprocess.php' method='POST'><input name='cancel-listing-pid' style='display:none;' type='text' value='".$row["id"]."'><input name='cancel-listing-submit' type='submit' value='Cancel this listing'></form></li>";
     }
 }else{
     echo "<p>You don't have any products for sale now! Click the link above to post a new item on Trade2CU!</p>";
 }
 ?>
 </ul>
+
+<a><span style="position:relative;left:30px;font-size:1.5em;font-weight:bold;margin:0.83em 0;padding-right:50px;">My Favourite</span></a>
+
+<div id="selling-display">
+<ul class="my-favourite-display" style='list-style-type:none;'>
+<?php
+$query="select product.id,product.img,product.name,product.price from myfav inner join product on myfav.pid=product.id where myfav.mid=".$id;
+$result=mysqli_query($link,$query);
+if(mysqli_num_rows($result)>0){
+    while($row=mysqli_fetch_assoc($result)){
+        echo "<li><a href='/product/buy/buying.php?pid=".$row["id"]."'><img width='100' height='100' src='../img/product/".$row["img"]."'>";
+        echo "<h4>".$row["name"]."</h4>";
+        echo "<p>HK$".$row["price"]."</p>";
+        echo "<form action='informationprocess.php' method='POST'><input name='cancel-myfav-pid' style='display:none;' type='text' value='".$row["id"]."'><input name='cancel-myfav-submit' type='submit' value='Remove this from Your Favourites'></form></li>";
+    }
+}else{
+    echo "<p>You don't have any items in Your Favourite. </p>";
+}
+?>
+</ul>
+</div>
+
 </div>
 <div class="push"></div>
 
