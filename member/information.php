@@ -115,11 +115,11 @@
 		</p>';
     }
 ?>
-<a id="modifyinfo-modal-button" style="position:relative;left:50px;color:#df5a07;">Edit profile</a>
 <a class="no-visited-link-color" href="/member/message.php" style="position:relative;left:60px;text-decoration:none;">View my messages</a>
 <a class="no-visited-link-color" href="/product/buy/status.php" style="position:relative;left:70px;text-decoration:none;">View status of my order / my items</a>
 <br clear="left">
-<button class="button" id="icon-modal-button">Edit icon</button>
+<button class="button" id="icon-modal-button">Edit icon</button><br>
+<button class="button" id="modifyinfo-modal-button" style="padding-top:5px;padding-bottom:5px;padding-left:37.5px;padding-right:37.5px;">Edit profile</button>
 <br><br>
 <p><span style="position:relative;left:30px;font-size:1.5em;font-weight:bold;margin:0.83em 0;padding-right:50px;">Things I am selling</span> <a href="../product/selling.php">sell a new one</a></p>
 
