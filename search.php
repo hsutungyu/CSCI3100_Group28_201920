@@ -140,7 +140,7 @@ if (count($terms)>0){
 			$pid=$row['id'];
 			//loop for all key words according to space
 			for ($i=0; $i<$len; $i++){
-				if (strpos($row['name'], $terms[$i])!==false){
+				if (stripos($row['name'], $terms[$i])!==false){
 					$sum++;
 					continue;
 				}
@@ -151,7 +151,7 @@ if (count($terms)>0){
                 else{
 	                $type="second hand";
                 }
-			    if (strpos($type, $terms[$i])!==false){
+			    if (stripos($type, $terms[$i])!==false){
 					$sum++;
 					continue;
 				}
@@ -183,7 +183,7 @@ if (count($terms)>0){
                             case 7:
 		                        $tmp="Others";
 							};
-				        if (strpos($tmp, $terms[$i])!==false){
+				        if (stripos($tmp, $terms[$i])!==false){
 					        $sum++;
 					        break;
 				        }			            
