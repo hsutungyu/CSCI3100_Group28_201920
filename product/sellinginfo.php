@@ -97,7 +97,7 @@ for ($i=0; $i<$len; $i++){
 	$conn->query($sqll);
 }
 
-header("Location: /product/buy/status.php");
+header("Location: /product/buy/buying.php?pid=".$pid);
 ?>	
 </body>
 </html>

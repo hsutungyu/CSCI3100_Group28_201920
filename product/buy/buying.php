@@ -4,7 +4,7 @@
 <head>
     <link rel="stylesheet" type="text/css" href="/css/style-nav.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Trade2CU - Product</title>
+    <title>Trade2CU - View Product</title>
     <link href="https://fonts.googleapis.com/css?family=Baloo+2&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 </head>
@@ -82,7 +82,10 @@ font-size: 80%;
 <body>
 <?php
     session_start();
-    include_once($_SERVER["DOCUMENT_ROOT"]."/member/register.php");
+	include_once($_SERVER["DOCUMENT_ROOT"]."/member/register.php");
+	if(empty($_SESSION["username"])){
+		echo "<script>alert('Please login before accessing this page!');window.location.href='/index.php';</script>";
+	}
     ?>
 <div class="container">
 <div class="navbar">
@@ -306,7 +309,23 @@ if($conn->connect_error){
           <p>My favourite</p>
           <form id="fav-form" action="" method="POST">
           <?php echo "<input name='fav-pid' id='fav-pid' type='text' style='display:none;' value='".$tid."'>"?>
-          <button id="fav-form-submit" type="submit" style="background-color:transparent;border:none;"><span id="heart"><i class="fa fa-heart-o" aria-hidden="true"></i></span></button>
+		  <?php
+		  $query="select id from member where username='".$_SESSION["username"]."'";
+		  $result=mysqli_query($conn,$query);
+		  $row=mysqli_fetch_assoc($result);
+		  $id=$row["id"];
+		  $query="select * from myfav where pid=".$tid." and mid=".$id;
+		  $result=mysqli_query($link,$query);
+		  // is my favourite
+		  if(mysqli_num_rows($result)!=0){
+			$heart="class='fa fa-heart'";
+			$classHeart="class='liked'";
+		  }else{
+			$heart="class='fa fa-heart-o";
+			$classHeart="";
+		  }
+		  echo "<button id='fav-form-submit' type='submit' style='background-color:transparent;border:none;'><span ".$classHeart." id='heart'><i ".$heart." aria-hidden='true'></i></span></button>";
+		  ?>
         </form>
         
 		  <p>Put in shopping cart</p>

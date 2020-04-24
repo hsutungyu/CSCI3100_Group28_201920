@@ -5,7 +5,7 @@
     <link rel="stylesheet" type="text/css" href="/css/style-nav.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Baloo+2&display=swap" rel="stylesheet">
-    <title>Trade2CU - Homepage</title>
+    <title>Trade2CU - Shopping Cart</title>
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 </head>
 
@@ -13,6 +13,9 @@
     <?php
     session_start();
     include_once($_SERVER["DOCUMENT_ROOT"]."/member/register.php");
+    if(empty($_SESSION["username"])){
+		echo "<script>alert('Please login before accessing this page!');window.location.href='/index.php';</script>";
+	}
     ?>
 <div class="container">
 <div class="navbar">
@@ -150,6 +153,7 @@ if (!empty($_SESSION["shopping-cart"])) {
 <div class="push"></div>
 
 </div>
+
 <div class="navbar">
 	<ul>
 		<li><a class="img" href="/index.php"><img src="/img/logo.png" alt="Trade2CU logo"></img></a></li>

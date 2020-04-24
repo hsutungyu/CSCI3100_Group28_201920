@@ -14,6 +14,8 @@ $id=$row['id'];
 foreach($_SESSION["shopping-cart"] as &$pid){
     $query="insert into trans values (null, ".$pid.",".$id.",now(),1,null,now())";
     $result=mysqli_query($link,$query);
+    $query="delete from myfav where pid=".$pid;
+    $result=mysqli_query($link,$query);
 }
 unset($_SESSION["shopping-cart"]);
 header("Location: status.php");
